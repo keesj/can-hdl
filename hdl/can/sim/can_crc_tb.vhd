@@ -4,10 +4,10 @@ use ieee.numeric_std.all;
 use std.textio.all;
 use ieee.std_logic_textio.all;
 
-entity can_crc_testbench is
-end can_crc_testbench;
+entity can_crc_tb is
+end can_crc_tb;
 
-architecture behavior of can_crc_testbench is 
+architecture behavior of can_crc_tb is 
 
   signal data : std_logic_vector(7 downto 0) := "01010101";
   signal clk : std_logic;
@@ -41,15 +41,15 @@ architecture behavior of can_crc_testbench is
   
 
   tb : process is
-    file testbench_data : text open READ_MODE is "test_data/can_crc_testbench_data.hex";
+    file tb_data : text open READ_MODE is "test_data/can_crc_tb_data.hex";
     variable l : line;
     variable data_in : std_logic_vector(7 downto 0);
     variable crc_in : std_logic_vector(14 downto 0);
   begin
     wait for 10 ns;
 
-    while not endfile(testbench_data) loop
-      readline(testbench_data,l);
+    while not endfile(tb_data) loop
+      readline(tb_data,l);
       hread(l, data_in);
       hread(l,crc_in);
       data <= data_in;

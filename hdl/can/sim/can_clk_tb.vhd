@@ -2,10 +2,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity can_clk_testbench is
-end can_clk_testbench;
+entity can_clk_tb is
+end can_clk_tb;
 
-architecture behavior of can_clk_testbench is 
+architecture behavior of can_clk_tb is 
 
   signal quanta_clk_count : std_logic_vector(31 downto 0) := (1=>'0' , others =>'0');
   -- Inputs

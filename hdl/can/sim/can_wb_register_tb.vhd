@@ -1,12 +1,11 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_unsigned.all;
 use ieee.numeric_std.all;
 
-entity can_wb_register_testbench is
-end can_wb_register_testbench;
+entity can_wb_register_tb is
+end can_wb_register_tb;
 
-architecture sim of can_wb_register_testbench is
+architecture sim of can_wb_register_tb is
 
   constant period: time := 10 ns;
 

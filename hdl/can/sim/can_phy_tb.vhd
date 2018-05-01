@@ -1,10 +1,10 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity can_phy_testbench is
-end can_phy_testbench;
+entity can_phy_tb is
+end can_phy_tb;
  
-architecture behavior of can_phy_testbench is 
+architecture behavior of can_phy_tb is 
     
    --inputs
    signal tx : std_logic := '0';

@@ -4,10 +4,10 @@ use ieee.numeric_std.all;
 use std.textio.all;
 use ieee.std_logic_textio.all;
 
-entity can_tx_testbench is
-end can_tx_testbench;
+entity can_tx_tb is
+end can_tx_tb;
 
-architecture behavior of can_tx_testbench is
+architecture behavior of can_tx_tb is
     signal test_running:   std_logic := '1';
     signal clk         :   std_logic := '0';            
     signal can_id      :   std_logic_vector (31 downto 0) := (others => '0'); -- 32 bit can_id + eff/rtr/err flags 
@@ -101,9 +101,9 @@ begin
 
   -- Test bench statements
   tb : process
-    file testbench_data : text open READ_MODE is "test_data/can_tx_testbench_data.hex";
+    file tb_data : text open READ_MODE is "test_data/can_tx_tb_data.hex";
 
-    file testbench_out : text open WRITE_MODE is "can_tx_testbench_data_out.hex";
+    file tb_out : text open WRITE_MODE is "can_tx_tb_data_out.hex";
     variable l : line;
     variable out_l : line;
     --00014 0 01 0122334455667788 5C70
@@ -117,10 +117,10 @@ begin
   begin
 
     wait for 10 ns; -- wait until global set/reset completes
-    while not endfile(testbench_data) loop
+    while not endfile(tb_data) loop
         --ID  R 
         --00d 0 8 436f707972696768 6F 7FFF8234421B7B83E2E4D2CED1D1F07F # https://github.com/EliasOenal/sigrok-dumps/blob/master/can/arbitrary_traffic/bsd_license_can_standard_500k.logicdata
-        readline(testbench_data,l);
+        readline(tb_data,l);
         hread(l, can_in_id);
         read(l,  can_in_rtr);
         hread(l, can_in_dlc);
@@ -151,7 +151,7 @@ begin
         hwrite(out_l,std_logic_vector(to_unsigned(can_tx_out_len,8)));
         write(out_l,String'(" "));
         hwrite(out_l,can_tx_out);
-        writeline(testbench_out,out_l);        
+        writeline(tb_out,out_l);        
     end loop;
     test_running <= '0';
 

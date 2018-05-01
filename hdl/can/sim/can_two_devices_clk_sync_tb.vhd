@@ -2,10 +2,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity can_two_devices_clk_sync_testbench is
-end can_two_devices_clk_sync_testbench;
+entity can_two_devices_clk_sync_tb is
+end can_two_devices_clk_sync_tb;
 
-architecture behavior of can_two_devices_clk_sync_testbench is
+architecture behavior of can_two_devices_clk_sync_tb is
     signal test_running :  std_logic := '1';
     signal clk :  std_logic;
 

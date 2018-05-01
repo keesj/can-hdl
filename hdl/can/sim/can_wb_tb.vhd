@@ -2,10 +2,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity can_wb_testbench is
-end can_wb_testbench;
+entity can_wb_tb is
+end can_wb_tb;
 
-architecture behavior of can_wb_testbench is
+architecture behavior of can_wb_tb is
     signal test_running :  std_logic := '1';
 
 
