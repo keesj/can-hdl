@@ -33,7 +33,7 @@ VHDL_TEST_SRC=                             \
 VHDL_MODULES = $(patsubst hdl/can/syn/%.vhd,%,$(VHDL_SRC))
 VHDL_TESTS = $(patsubst hdl/can/sim/%.vhd,%,$(VHDL_TEST_SRC))
 
-tests:
+tests:work-obj08.cf
 	cp -r hdl/can/sim/test_data .
 	ghdl  -r --ieee=synopsys --std=08 can_phy_testbench
 	ghdl  -r --ieee=synopsys --std=08 can_clk_testbench
