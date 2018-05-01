@@ -29,19 +29,23 @@ VHDL_TEST_SRC=                             \
 	hdl/can/sim/can_wb_testbench.vhd                   \
 	hdl/can/sim/can_wb_register_testbench.vhd 
 
+
 VHDL_MODULES = $(patsubst hdl/can/syn/%.vhd,%,$(VHDL_SRC))
 VHDL_TESTS = $(patsubst hdl/can/sim/%.vhd,%,$(VHDL_TEST_SRC))
 
-tests: $(VHDL_TESTS)
-	echo ${VHDL_MODULES}
-	#echo ${VHDL_MODULES}
+tests:
+	cp -r hdl/can/sim/test_data .
+	ghdl  -r --ieee=synopsys --std=08 can_phy_testbench
+	ghdl  -r --ieee=synopsys --std=08 can_clk_testbench
+	ghdl  -r --ieee=synopsys --std=08 can_crc_testbench
+	ghdl  -r --ieee=synopsys --std=08 can_tx_testbench
+	ghdl  -r --ieee=synopsys --std=08 can_rx_testbench
+	ghdl  -r --ieee=synopsys --std=08 can_testbench
+	ghdl  -r --ieee=synopsys --std=08 can_two_devices_testbench
+	ghdl  -r --ieee=synopsys --std=08 can_two_devices_clk_sync_testbench
+	ghdl  -r --ieee=synopsys --std=08 can_wb_testbench
+	ghdl  -r --ieee=synopsys --std=08 can_wb_register_testbench
 
-# Rules stolen from https://lauri.võsandi.com/hdl/ghdl.html
-# Binary depends on the object file
-%: %.o
-	$(GHDL) -e $(GHDLFLAGS) $@
-
-# Object file depends on source
-%.o: %.vhd
-	$(GHDL) -a $(GHDLFLAGS) $<
+work-obj08.cf: $(VHDL_SRC) $(VHDL_TEST_SRC)
+	ghdl -a --ieee=synopsys --std=08 $?
 
