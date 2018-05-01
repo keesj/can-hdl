@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>30</y>
+      <w>170</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>CPU
+bg=green
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>30</y>
+      <w>140</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Can wishbone
+bg=blue
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>190</x>
+      <y>70</y>
+      <w>140</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Wishbone bus
+bg=yellow
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
