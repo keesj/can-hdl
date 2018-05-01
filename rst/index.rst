@@ -1,5 +1,5 @@
 Can HDL documentation
-===================================
+=====================
 
 .. toctree::
    :maxdepth: 2
@@ -7,3 +7,6 @@ Can HDL documentation
 
    can_wb
    tools
+   hardware
+   software
+   resources
