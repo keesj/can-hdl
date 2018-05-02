@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Can Wishbone &mdash; Can HDL  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tools" href="tools.html" />
+    <link rel="prev" title="Can HDL documentation" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Can HDL
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Can Wishbone</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#register-overview">Register overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#register-description">Register description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reg-version">REG_VERSION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-status">REG_STATUS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-conf">REG_CONF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-sample-rate">REG_SAMPLE_RATE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-id-filter">REG_ID_FILTER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-id-filter-mask">REG_ID_FILTER_MASK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-tx-id">REG_TX_ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-tx-dlc">REG_TX_DLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-tx-data0">REG_TX_DATA0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-tx-data1">REG_TX_DATA1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-tx-valid">REG_TX_VALID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-rx-id">REG_RX_ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-rx-dlc">REG_RX_DLC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-rx-data0">REG_RX_DATA0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-rx-data1">REG_RX_DATA1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reg-rx-drr">REG_RX_DRR</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Can HDL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Can Wishbone</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/can_wb.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="can-wishbone">
+<h1>Can Wishbone<a class="headerlink" href="#can-wishbone" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/dia_cpu_can_wb.png" src="_images/dia_cpu_can_wb.png" />
+<p>The can controller has a wishbone compabile interface implemented in the can_wb.vhd interface.
+This interfaces allows to configure,send and receive can messages from a soft core.</p>
+<div class="section" id="register-overview">
+<h2>Register overview<a class="headerlink" href="#register-overview" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="colwidths-given docutils" id="id1">
+<caption><span class="caption-text">Register list</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="16%" />
+<col width="11%" />
+<col width="32%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Register name.</th>
+<th class="head">Register address.</th>
+<th class="head">R/W.</th>
+<th class="head">Description.</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>REG_VERSION</td>
+<td>0x00000000</td>
+<td>RO</td>
+<td>Version inforation</td>
+</tr>
+<tr class="row-odd"><td>REG_STATUS</td>
+<td>0x00000001</td>
+<td>RO</td>
+<td>Status register</td>
+</tr>
+<tr class="row-even"><td>REG_CONF</td>
+<td>0x00000002</td>
+<td>R/W</td>
+<td>Configuration register</td>
+</tr>
+<tr class="row-odd"><td>REG_SAMPLE_RATE</td>
+<td>0x00000003</td>
+<td>R/W</td>
+<td>Sample rate control</td>
+</tr>
+<tr class="row-even"><td>REG_ID_FILTER</td>
+<td>0x00000004</td>
+<td>R/W</td>
+<td>ID filter control</td>
+</tr>
+<tr class="row-odd"><td>REG_ID_FILTER_MASK</td>
+<td>0x00000005</td>
+<td>R/W</td>
+<td>ID filter mask control</td>
+</tr>
+<tr class="row-even"><td>REG_TX_ID</td>
+<td>0x00000006</td>
+<td>R/W</td>
+<td>Transmit ID register</td>
+</tr>
+<tr class="row-odd"><td>REG_TX_DLC</td>
+<td>0x00000007</td>
+<td>R/W</td>
+<td>Transmit Data length</td>
+</tr>
+<tr class="row-even"><td>REG_TX_DATA0</td>
+<td>0x00000008</td>
+<td>R/W</td>
+<td>Transmit data low word</td>
+</tr>
+<tr class="row-odd"><td>REG_TX_DATA1</td>
+<td>0x00000009</td>
+<td>R/W</td>
+<td>Transmist data high word</td>
+</tr>
+<tr class="row-even"><td>REG_TX_VALID</td>
+<td>0x0000000a</td>
+<td>R/W</td>
+<td>Set Transmit registers validity</td>
+</tr>
+<tr class="row-odd"><td>REG_RX_ID</td>
+<td>0x0000000b</td>
+<td>R/W</td>
+<td>Receiver ID register</td>
+</tr>
+<tr class="row-even"><td>REG_RX_DLC</td>
+<td>0x0000000c</td>
+<td>R/W</td>
+<td>Reciever data length register</td>
+</tr>
+<tr class="row-odd"><td>REG_RX_DATA0</td>
+<td>0x0000000d</td>
+<td>R/W</td>
+<td>Reciever data low word</td>
+</tr>
+<tr class="row-even"><td>REG_RX_DATA1</td>
+<td>0x0000000e</td>
+<td>R/W</td>
+<td>Receiver data high word</td>
+</tr>
+<tr class="row-odd"><td>REG_RX_DRR</td>
+<td>0x0000000f</td>
+<td>R/W</td>
+<td>Receiver data read ready status</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="register-description">
+<h2>Register description<a class="headerlink" href="#register-description" title="Permalink to this headline">¶</a></h2>
+<p>Here you will find a description of the registers.</p>
+<div class="section" id="reg-version">
+<h3>REG_VERSION<a class="headerlink" href="#reg-version" title="Permalink to this headline">¶</a></h3>
+<p>reads version h”13371337’</p>
+</div>
+<div class="section" id="reg-status">
+<h3>REG_STATUS<a class="headerlink" href="#reg-status" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reg-conf">
+<h3>REG_CONF<a class="headerlink" href="#reg-conf" title="Permalink to this headline">¶</a></h3>
+<p>(loopback,selftest )</p>
+</div>
+<div class="section" id="reg-sample-rate">
+<h3>REG_SAMPLE_RATE<a class="headerlink" href="#reg-sample-rate" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reg-id-filter">
+<h3>REG_ID_FILTER<a class="headerlink" href="#reg-id-filter" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reg-id-filter-mask">
+<h3>REG_ID_FILTER_MASK<a class="headerlink" href="#reg-id-filter-mask" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reg-tx-id">
+<h3>REG_TX_ID<a class="headerlink" href="#reg-tx-id" title="Permalink to this headline">¶</a></h3>
+<p>tx_id (11 msb are id) and lsb is request response</p>
+</div>
+<div class="section" id="reg-tx-dlc">
+<h3>REG_TX_DLC<a class="headerlink" href="#reg-tx-dlc" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reg-tx-data0">
+<h3>REG_TX_DATA0<a class="headerlink" href="#reg-tx-data0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reg-tx-data1">
+<h3>REG_TX_DATA1<a class="headerlink" href="#reg-tx-data1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reg-tx-valid">
+<h3>REG_TX_VALID<a class="headerlink" href="#reg-tx-valid" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reg-rx-id">
+<h3>REG_RX_ID<a class="headerlink" href="#reg-rx-id" title="Permalink to this headline">¶</a></h3>
+<p>tx_id (11 msb are id) and lsb is request response</p>
+</div>
+<div class="section" id="reg-rx-dlc">
+<h3>REG_RX_DLC<a class="headerlink" href="#reg-rx-dlc" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reg-rx-data0">
+<h3>REG_RX_DATA0<a class="headerlink" href="#reg-rx-data0" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reg-rx-data1">
+<h3>REG_RX_DATA1<a class="headerlink" href="#reg-rx-data1" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="reg-rx-drr">
+<h3>REG_RX_DRR<a class="headerlink" href="#reg-rx-drr" title="Permalink to this headline">¶</a></h3>
+<p>(the data has been read)</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tools.html" class="btn btn-neutral float-right" title="Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Can HDL documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Kees Jongenburger.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>
