@@ -55,3 +55,12 @@ cryptpad.org
 
 Cryptpad allows hassle free editing and pasting of images onto a secure environment.
 
+Shutter
+'''''''
+
+.. image:: img/media/shutter.png
+
+
+Shutter is a tool to take screen shots. It has a nice feature to edit the screenshots and allowed me to scrible on a screen shot. I found this very usefull during debug.
+
+The tool called grommit-mpx allows me to also do the same on a life screen.

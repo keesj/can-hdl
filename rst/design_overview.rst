@@ -11,8 +11,8 @@ Software stack overview
 
 Can HDL is only a small piece of the puzzle to get a fully working system and the linux Software stack was not developed by me. The goal of the project is/was to have more flexibility in the lower layers to be able to implement different type of attacks and triggering.
 
-VHDL overview
--------------
+HDL code overview
+-----------------
 
 can_phy.vhd
 '''''''''''
