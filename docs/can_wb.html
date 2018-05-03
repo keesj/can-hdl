@@ -280,13 +280,45 @@ This interfaces allows to configure,send and receive can messages from a soft co
 </div>
 <div class="section" id="register-description">
 <h2>Register description<a class="headerlink" href="#register-description" title="Permalink to this headline">¶</a></h2>
-<p>Here you will find a description of the registers.</p>
+<p>Here you will find a description of the registers but to be sure ..
+<a class="reference external" href="https://github.com/keesj/can-hdl/blob/master/hdl/can/syn/can_wb.vhd#L74">use the source</a></p>
 <div class="section" id="reg-version">
 <h3>REG_VERSION<a class="headerlink" href="#reg-version" title="Permalink to this headline">¶</a></h3>
-<p>reads version h”13371337’</p>
+<p>Can controller version <a class="reference external" href="https://github.com/keesj/can-hdl/blob/master/hdl/can/syn/can_wb.vhd#L33">reads h”13371337’</a></p>
 </div>
 <div class="section" id="reg-status">
 <h3>REG_STATUS<a class="headerlink" href="#reg-status" title="Permalink to this headline">¶</a></h3>
+<p>code: <a class="reference external" href="https://github.com/keesj/can-hdl/blob/master/hdl/can/syn/can.vhd#L67">source</a>
+Status register</p>
+<table border="1" class="colwidths-given docutils" id="id2">
+<caption><span class="caption-text">Bit values</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="43%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">BIT</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>rx status 0 = idle , 1 = busy</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>tx status 0 = idle , 1 = busy</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>rx crc error</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>rx data ready</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>tx lost artibration error</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="reg-conf">
 <h3>REG_CONF<a class="headerlink" href="#reg-conf" title="Permalink to this headline">¶</a></h3>

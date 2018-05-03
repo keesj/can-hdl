@@ -23,6 +23,8 @@ https://github.com/newaetech/CANoodler
 Circuit simluation
 ''''''''''''''''''
 
+.. image:: img/media/eeschema.png
+
 Spice and eeschema
 
 
