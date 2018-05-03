@@ -83,7 +83,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Design overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#software-stack-overview">Software stack overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#vhdl-overview">VHDL overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hdl-code-overview">HDL code overview</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#can-phy-vhd">can_phy.vhd</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#can-tx-vhd">can_tx.vhd</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#can-rx-vhd">can_rx.vhd</a></li>
@@ -99,7 +99,6 @@
 <li class="toctree-l1"><a class="reference internal" href="can_wb.html">Can Wishbone</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="software.html">Software</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 
@@ -171,10 +170,10 @@
 <img alt="_images/design_sw_stack_overview.png" src="_images/design_sw_stack_overview.png" />
 <div class="section" id="software-stack-overview">
 <h2>Software stack overview<a class="headerlink" href="#software-stack-overview" title="Permalink to this headline">¶</a></h2>
-<p>Can HDL is only a small piece of the puzzle to get a fully working system and the linux Software stack was not developed by me. The goal of the project is/was to have more flexibility in the lower layers to be able to implement different type of attacks and triggering. This part of the sofrware and design is not finished.</p>
+<p>Can HDL is only a small piece of the puzzle to get a fully working system and the linux Software stack was not developed by me. The goal of the project is/was to have more flexibility in the lower layers to be able to implement different type of attacks and triggering.</p>
 </div>
-<div class="section" id="vhdl-overview">
-<h2>VHDL overview<a class="headerlink" href="#vhdl-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hdl-code-overview">
+<h2>HDL code overview<a class="headerlink" href="#hdl-code-overview" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="can-phy-vhd">
 <h3>can_phy.vhd<a class="headerlink" href="#can-phy-vhd" title="Permalink to this headline">¶</a></h3>
 <p>Unlike something like an UART on the CAN bus multiple devices can drive the lines. The same lines are also used for send and receive. The overall design is that the lines have a “dormant” state of 1 and anybody on the bus can drive the lines to the “0” level.</p>
@@ -204,6 +203,7 @@
 <div class="section" id="can-clk-vhd">
 <h3>can_clk.vhd<a class="headerlink" href="#can-clk-vhd" title="Permalink to this headline">¶</a></h3>
 <p>Can clk can use a little move love but the main purpose is to generate clock events for the can bus. a bit time is divided in 10 (quanta). At time 0 the bits can be set. At time 7 the bits are to be read.</p>
+<p>Can clock also synchronizes with the clock edges on incomming bit.(A test testing this is called can_two_devices_clk_sync_tb.</p>
 </div>
 <div class="section" id="can-wb-vhd">
 <h3>can_wb.vhd<a class="headerlink" href="#can-wb-vhd" title="Permalink to this headline">¶</a></h3>

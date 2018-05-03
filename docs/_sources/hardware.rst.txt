@@ -30,4 +30,4 @@ Alternatives
 ''''''''''''
 
 There are a few good hardware alternatives to this project. A beaglebone black (has two can controllers on board and just lacks the phys). STM32 + CANoodler from ChipWhisperer
-a can2serial adapter like http://www.can232.com/
+a can2serial adapter like http://www.can232.com/. Those of course are not a cool.

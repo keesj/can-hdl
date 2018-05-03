@@ -12,5 +12,4 @@ Git repository https://github.com/keesj/can-hdl
    can_wb
    tools
    hardware
-   software
    resources
