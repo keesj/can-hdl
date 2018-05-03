@@ -87,16 +87,36 @@ Register overview
 Register description
 ''''''''''''''''''''
 
-Here you will find a description of the registers.
+Here you will find a description of the registers but to be sure ..
+`use the source <https://github.com/keesj/can-hdl/blob/master/hdl/can/syn/can_wb.vhd#L74>`_
 
 REG_VERSION
 -----------
  
-reads version h"13371337'
+Can controller version `reads h"13371337' <https://github.com/keesj/can-hdl/blob/master/hdl/can/syn/can_wb.vhd#L33>`_
 
 
 REG_STATUS
 ----------
+code: `source <https://github.com/keesj/can-hdl/blob/master/hdl/can/syn/can.vhd#L67>`_
+Status register 
+
+.. list-table:: Bit values
+  :widths: 15 20
+  :header-rows: 1
+
+  * - BIT
+    - Description
+  * - 0
+    - rx status 0 = idle , 1 = busy
+  * - 1 
+    - tx status 0 = idle , 1 = busy 
+  * - 2
+    - rx crc error
+  * - 3
+    - rx data ready
+  * - 4 
+    - tx lost artibration error
 
 REG_CONF
 --------
