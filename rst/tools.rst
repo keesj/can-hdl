@@ -14,6 +14,8 @@ The documentation can be found here https://ghdl.readthedocs.io/en/latest/
 
 If anything this is the tool to checkout!
 
+https://lauri.võsandi.com/hdl/ghdl.html
+
 
 GTKWave
 '''''''
@@ -40,6 +42,15 @@ Sigrok
 Sigrok offered the CAN logic analyzer features I wanted for the project. The older code on my (non bionic) Ubuntu install was a bit outdated but more recents
 builds did offer better support.
 https://sigrok.org/
+
+Ols
+'''
+
+.. image:: img/media/ols.png
+
+Given the papilo comes with the SUMP logic analyzer code that can easely be embedded
+it is trivial to trace lines (or possible trigger on them). Open Bench Logic Sniffer is a properly working logic analyzer that can handle SUMP.
+
 
 Visual Studio Code
 ''''''''''''''''''
