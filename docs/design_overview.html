@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Design overview &mdash; Can HDL  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Can Wishbone" href="can_wb.html" />
+    <link rel="prev" title="Can HDL documentation" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Can HDL
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Design overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#software-stack-overview">Software stack overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vhdl-overview">VHDL overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#can-phy-vhd">can_phy.vhd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-tx-vhd">can_tx.vhd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-rx-vhd">can_rx.vhd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-vhd">can.vhd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-crc-vhd">can_crc.vhd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-tx-mux-vhd">can_tx_mux.vhd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-clk-vhd">can_clk.vhd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-wb-vhd">can_wb.vhd</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="can_wb.html">Can Wishbone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Can HDL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Design overview</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/design_overview.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="design-overview">
+<h1>Design overview<a class="headerlink" href="#design-overview" title="Permalink to this headline">¶</a></h1>
+<p>The following image shows a high level overview of the current stack.</p>
+<img alt="_images/design_sw_stack_overview.png" src="_images/design_sw_stack_overview.png" />
+<div class="section" id="software-stack-overview">
+<h2>Software stack overview<a class="headerlink" href="#software-stack-overview" title="Permalink to this headline">¶</a></h2>
+<p>Can HDL is only a small piece of the puzzle to get a fully working system and the linux Software stack was not developed by me. The goal of the project is/was to have more flexibility in the lower layers to be able to implement different type of attacks and triggering. This part of the sofrware and design is not finished.</p>
+</div>
+<div class="section" id="vhdl-overview">
+<h2>VHDL overview<a class="headerlink" href="#vhdl-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="can-phy-vhd">
+<h3>can_phy.vhd<a class="headerlink" href="#can-phy-vhd" title="Permalink to this headline">¶</a></h3>
+<p>Unlike something like an UART on the CAN bus multiple devices can drive the lines. The same lines are also used for send and receive. The overall design is that the lines have a “dormant” state of 1 and anybody on the bus can drive the lines to the “0” level.</p>
+<p>To be able to implement this it was not enough to driver 0 or 1 out of the lines but also an “enable” was required.</p>
+<p>Not only that but the protocol prevents collisions of packets by giving packets with a lower id (That thus drive the lines low) priotiry. In terms of implementation it is therefore required to be able to detect when you are sending a 1 but the line becomes a 0 (you lost arbitration).</p>
+</div>
+<div class="section" id="can-tx-vhd">
+<h3>can_tx.vhd<a class="headerlink" href="#can-tx-vhd" title="Permalink to this headline">¶</a></h3>
+<p>There are different standards for can packect length. I focused on the ones that have 11 bit id’s. Can tx accepts an id a data lenght and data and is able to drive the can_phy to send out a full packet (including things like the above arbitration and performing the calculation of the crc).</p>
+</div>
+<div class="section" id="can-rx-vhd">
+<h3>can_rx.vhd<a class="headerlink" href="#can-rx-vhd" title="Permalink to this headline">¶</a></h3>
+<p>Pertty much the same as can_tx but for the reveiving end</p>
+</div>
+<div class="section" id="can-vhd">
+<h3>can.vhd<a class="headerlink" href="#can-vhd" title="Permalink to this headline">¶</a></h3>
+<p>Wrapper for all the components related to this projects.</p>
+</div>
+<div class="section" id="can-crc-vhd">
+<h3>can_crc.vhd<a class="headerlink" href="#can-crc-vhd" title="Permalink to this headline">¶</a></h3>
+<p>Used in can_rx and can_tx to calculate the CRC of the packets (one bit at the time)</p>
+</div>
+<div class="section" id="can-tx-mux-vhd">
+<h3>can_tx_mux.vhd<a class="headerlink" href="#can-tx-mux-vhd" title="Permalink to this headline">¶</a></h3>
+<p>I expected the can_tx to be doing the sending and can_rx the receiving but things are not that simple. Almost at the end of sending a can packet a 1 bit wide acknowledge slot is left “dormant”. It is up to the receivers (rx) to drive the lines at that time if the packets.. was for the desgigned receiver and the crc matched. Can mux allows both the TX and RX part to drive the tx lines.</p>
+</div>
+<div class="section" id="can-clk-vhd">
+<h3>can_clk.vhd<a class="headerlink" href="#can-clk-vhd" title="Permalink to this headline">¶</a></h3>
+<p>Can clk can use a little move love but the main purpose is to generate clock events for the can bus. a bit time is divided in 10 (quanta). At time 0 the bits can be set. At time 7 the bits are to be read.</p>
+</div>
+<div class="section" id="can-wb-vhd">
+<h3>can_wb.vhd<a class="headerlink" href="#can-wb-vhd" title="Permalink to this headline">¶</a></h3>
+<p>This interface provides a way to interact with the code using the wishbone interface. This is there registers are defined.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="can_wb.html" class="btn btn-neutral float-right" title="Can Wishbone" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Can HDL documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Kees Jongenburger.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>
