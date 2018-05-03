@@ -9,7 +9,7 @@ The following image shows a high level overview of the current stack.
 Software stack overview
 -----------------------
 
-Can HDL is only a small piece of the puzzle to get a fully working system and the linux Software stack was not developed by me. The goal of the project is/was to have more flexibility in the lower layers to be able to implement different type of attacks and triggering. This part of the sofrware and design is not finished.
+Can HDL is only a small piece of the puzzle to get a fully working system and the linux Software stack was not developed by me. The goal of the project is/was to have more flexibility in the lower layers to be able to implement different type of attacks and triggering.
 
 VHDL overview
 -------------
@@ -54,6 +54,8 @@ can_clk.vhd
 '''''''''''
 
 Can clk can use a little move love but the main purpose is to generate clock events for the can bus. a bit time is divided in 10 (quanta). At time 0 the bits can be set. At time 7 the bits are to be read.
+
+Can clock also synchronizes with the clock edges on incomming bit.(A test testing this is called can_two_devices_clk_sync_tb.
 
 
 can_wb.vhd
