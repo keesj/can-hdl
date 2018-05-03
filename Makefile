@@ -50,4 +50,4 @@ work-obj08.cf: $(VHDL_SRC) $(VHDL_TEST_SRC)
 	ghdl -a --ieee=synopsys --std=08 $?
 
 clean:
-	rm -rf work-obj08.cf *.hex vunit_out test_data
+	rm -rf work-obj08.cf *.hex vunit_out test_data build
