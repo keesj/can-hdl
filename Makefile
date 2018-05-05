@@ -1,6 +1,8 @@
 GHDL=ghdl
 GHDLFLAGS=-r --ieee=synopsys --std=08
 
+CFLAGS=-Wc,-fprofile-instr-generate -Wc,-fcoverage-mapping
+#LDFLAGS=-Wl,-lgcov
 #
 # Source files
 #
@@ -33,21 +35,32 @@ VHDL_TEST_SRC=                             \
 VHDL_MODULES = $(patsubst hdl/can/syn/%.vhd,%,$(VHDL_SRC))
 VHDL_TESTS = $(patsubst hdl/can/sim/%.vhd,%,$(VHDL_TEST_SRC))
 
-tests:work-obj08.cf
-	cp -r hdl/can/sim/test_data .
-	ghdl  -r --ieee=synopsys --std=08 can_phy_tb
-	ghdl  -r --ieee=synopsys --std=08 can_clk_tb
-	ghdl  -r --ieee=synopsys --std=08 can_crc_tb
-	ghdl  -r --ieee=synopsys --std=08 can_tx_tb
-	ghdl  -r --ieee=synopsys --std=08 can_rx_tb
-	ghdl  -r --ieee=synopsys --std=08 can_tb
-	ghdl  -r --ieee=synopsys --std=08 can_two_devices_tb
-	ghdl  -r --ieee=synopsys --std=08 can_two_devices_clk_sync_tb
-	ghdl  -r --ieee=synopsys --std=08 can_wb_tb
-	ghdl  -r --ieee=synopsys --std=08 can_wb_register_tb
+VHDL_MODULE_OBJ = $(patsubst hdl/can/syn/%.vhd,%.o,$(VHDL_SRC))
+#VHDL_TEST_OBJ += $(patsubst hdl/can/sim/%.vhd,%.o,$(VHDL_TEST_SRC))
 
-work-obj08.cf: $(VHDL_SRC) $(VHDL_TEST_SRC)
-	ghdl -a --ieee=synopsys --std=08 $?
+%.o:hdl/can/sim/%.vhd
+	ghdl -a --ieee=synopsys --std=08 $<
+
+%.o:hdl/can/syn/%.vhd
+	ghdl -a --ieee=synopsys --std=08 $<
+
+%:%.o
+	ghdl -e --ieee=synopsys --std=08  $@
+
+demo:$(VHDL_MODULE_OBJ) $(VHDL_TESTS)
+	#ghdl -e --ieee=synopsys --std=08  $?
+
+%_report.txt:%
+	ghdl -r $<  --vcd=$<.vcd | tee $@
+
+copy_data:
+	cp -r hdl/can/sim/test_data .
+
+tests:$(VHDL_TESTS) copy_data can_two_devices_clk_sync_tb_report.txt
+
+#work-obj08.cf: $(VHDL_SRC) $(VHDL_TEST_SRC)#
+#	#ghdl -a  $(CFLAGS) --ieee=synopsys --std=08 $(VHDL_SRC)
+#	ghdl -a --ieee=synopsys --std=08 $(VHDL_TEST_SRC)
 
 clean:
-	rm -rf work-obj08.cf *.hex vunit_out test_data build
+	rm -rf work-obj08.cf *.hex vunit_out test_data build *.o $(VHDL_TESTS)
