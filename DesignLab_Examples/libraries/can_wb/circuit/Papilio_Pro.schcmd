@@ -1,0 +1,15 @@
+select figure at 836 1234 8 -branches -sn=1
+move wire at 832 1152 832 1280 to 944 1152 944 1280 -keepConn -sn=1
+select figure at 787 1251 8 -branches -sn=1
+move wire at 784 1184 784 1312 to 912 1184 912 1312 -keepConn -sn=1
+select figure at 732 1269 8 -branches -sn=1
+move wire at 736 1216 736 1344 to 880 1216 880 1344 -keepConn -sn=1
+select figure at 741 1288 8 -branches -sn=1
+add autowire 640 1152 640 1344 8 -sn=1
+add autowire 688 1184 688 1344 8 -sn=1
+add autowire 736 1216 736 1344 8 -sn=1
+add iomarker 640 1344 0 Unknown Unknown -sn=1
+add iomarker 736 1344 0 Unknown Unknown -sn=1
+select figure at 735 1275 8 -branches -sn=1
+move wire at 736 1216 736 1344 to 768 1216 768 1344 -keepConn -sn=1
+select figure at 739 1434 8 -branches -sn=1

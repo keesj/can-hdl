@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="can_wb">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2018-4-2T16:16:38</timestamp>
+    <pin polarity="Input" x="128" y="-112" name="wishbone_in(100:0)" />
+    <pin polarity="Output" x="144" y="-112" name="wishbone_out(100:0)" />
+    <pin polarity="Output" x="256" y="-48" name="tx" />
+    <pin polarity="Output" x="256" y="-16" name="tx_en" />
+    <pin polarity="Input" x="256" y="16" name="rx" />
+    <graph>
+        <rect width="160" x="52" y="-64" height="92" />
+        <line x2="128" y1="-112" y2="-64" x1="128" />
+        <line x2="144" y1="-112" y2="-64" x1="144" />
+        <text style="fontsize:32;fontname:Arial" x="80" y="44">can_wb</text>
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="176" y="-48" type="pin tx" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="184" y="16" type="pin rx" />
+        <line x2="176" y1="-48" y2="-48" x1="256" />
+        <line x2="184" y1="-16" y2="-16" x1="256" />
+        <attrtext style="alignment:RIGHT" attrname="PinName" x="180" y="-16" type="pin tx_en" />
+        <line x2="188" y1="16" y2="16" x1="256" />
+    </graph>
+</symbol>

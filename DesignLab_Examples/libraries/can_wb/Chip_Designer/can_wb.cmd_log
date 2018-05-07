@@ -1,0 +1,2 @@
+vhdtdtfi -prj Chip_Designer -o /home/keesj/projects/DesignLab_Examples/libraries/can_wb/Chip_Designer/can_wb.vhi -module can_wb -template /opt/Xilinx/14.7/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror -lib DesignLab ../../ZPUino_Wishbone_Peripherals/Wishbone_to_Registers.vhd -lib DesignLab ../can_wb.vhd 
+vhdtdtfi -lib DesignLab ../../ZPUino_Wishbone_Peripherals/Wishbone_to_Registers.vhd -lib DesignLab ../can_wb.vhd -prj Chip_Designer -o can_wb.spl -module can_wb -template /opt/Xilinx/14.7/ISE_DS/ISE//data/splfile.tft -deleteonerror 

@@ -1,0 +1,4 @@
+AR can_wb behavioral /home/keesj/projects/DesignLab_Examples/libraries/can_wb/Chip_Designer/../can_wb.vhd sub00/vhpl03 1522687186
+EN can_wb NULL /home/keesj/projects/DesignLab_Examples/libraries/can_wb/Chip_Designer/../can_wb.vhd sub00/vhpl02 1522687185
+AR wishbone_to_registers rtl /home/keesj/projects/DesignLab_Examples/libraries/can_wb/Chip_Designer/../../ZPUino_Wishbone_Peripherals/Wishbone_to_Registers.vhd sub00/vhpl01 1522687184
+EN wishbone_to_registers NULL /home/keesj/projects/DesignLab_Examples/libraries/can_wb/Chip_Designer/../../ZPUino_Wishbone_Peripherals/Wishbone_to_Registers.vhd sub00/vhpl00 1522687183

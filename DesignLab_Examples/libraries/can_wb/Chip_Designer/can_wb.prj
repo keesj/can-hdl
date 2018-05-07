@@ -1,0 +1,7 @@
+vhdl DesignLab "../canlib/can_crc.vhd"
+vhdl DesignLab "../canlib/can_tx_mux.vhd"
+vhdl DesignLab "../canlib/can_tx.vhd"
+vhdl DesignLab "../canlib/can_rx.vhd"
+vhdl DesignLab "../canlib/can_clk.vhd"
+vhdl DesignLab "../canlib/can.vhd"
+vhdl DesignLab "../can_wb.vhd"

@@ -1,0 +1,2 @@
+vhdl DesignLab "../../../ZPUino_Wishbone_Peripherals/Wishbone_to_Registers_x10.vhd"
+vhdl DesignLab "../../can_wb.vhd"

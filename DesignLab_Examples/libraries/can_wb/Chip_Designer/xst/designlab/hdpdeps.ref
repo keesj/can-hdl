@@ -1,0 +1,17 @@
+V3 9
+FL /home/keesj/projects/DesignLab_Examples/libraries/can_wb/Chip_Designer/../../ZPUino_Wishbone_Peripherals/Wishbone_to_Registers.vhd 2018/04/02.18:07:58 P.20131013
+EN DesignLab/Wishbone_to_Registers 1522687183 \
+      FL /home/keesj/projects/DesignLab_Examples/libraries/can_wb/Chip_Designer/../../ZPUino_Wishbone_Peripherals/Wishbone_to_Registers.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179 \
+      PB ieee/NUMERIC_STD 1381692181 LB DesignLab
+AR DesignLab/Wishbone_to_Registers/rtl 1522687184 \
+      FL /home/keesj/projects/DesignLab_Examples/libraries/can_wb/Chip_Designer/../../ZPUino_Wishbone_Peripherals/Wishbone_to_Registers.vhd \
+      EN DesignLab/Wishbone_to_Registers 1522687183
+FL /home/keesj/projects/DesignLab_Examples/libraries/can_wb/Chip_Designer/../can_wb.vhd 2018/04/02.18:13:17 P.20131013
+EN DesignLab/can_wb 1522687185 \
+      FL /home/keesj/projects/DesignLab_Examples/libraries/can_wb/Chip_Designer/../can_wb.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181 LB UNISIM \
+      PH unisim/VCOMPONENTS 1381692182 LB DesignLab
+AR DesignLab/can_wb/BEHAVIORAL 1522687186 \
+      FL /home/keesj/projects/DesignLab_Examples/libraries/can_wb/Chip_Designer/../can_wb.vhd \
+      EN DesignLab/can_wb 1522687185 CP Wishbone_to_Registers
