@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>150</y>
+      <w>150</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>scland
+--
+/dev/ttyUSB0
+bg=blue
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>290</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>cantact.ino sketch
+bg=blue
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>150</y>
+      <w>150</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>pyvit
+--
+bg=blue
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>390</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>can wishbone
+bg=orange
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>250</y>
+      <w>360</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>FPGA Fabric
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>10</y>
+      <w>360</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>Linux
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>60</y>
+      <w>150</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>candump
+--
+slcan0
+bg=blue
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>60</y>
+      <w>150</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>wireshark
+--
+bg=blue
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>340</y>
+      <w>320</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>zpuino CPU
+bg=orange
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
