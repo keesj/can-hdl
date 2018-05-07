@@ -63,4 +63,4 @@ tests:$(VHDL_TESTS) copy_data can_two_devices_clk_sync_tb_report.txt
 #	ghdl -a --ieee=synopsys --std=08 $(VHDL_TEST_SRC)
 
 clean:
-	rm -rf work-obj08.cf *.hex vunit_out test_data build *.o $(VHDL_TESTS)
+	rm -rf *.txt work-obj08.cf *.hex vunit_out test_data build *.o $(VHDL_TESTS)
