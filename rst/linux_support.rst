@@ -48,5 +48,3 @@ I also found wireshark to work on this
 
 .. image:: img/media/wireshark.png
 
-'''''''
-
