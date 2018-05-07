@@ -10,6 +10,8 @@ Git repository https://github.com/keesj/can-hdl
 
    design_overview
    can_wb
+   linux_support
+   rhme3
    tools
    hardware
    resources
