@@ -51,7 +51,7 @@ void loop() {
   Serial.print(can_wb.get_config());
 
 
-  char * data= "hellocan";
+  unsigned char data[8] = {'h','e','l','l','o','c','a','n'};
   
   can_wb.set_tx_id(id_counter << 21);
   can_wb.set_tx_dlc(8); 
@@ -87,11 +87,13 @@ void loop() {
 
   Serial.print(can_wb.get_rx_dlc());
   
-  char data_out[9];
+  unsigned char data_out[9];
   memset(data_out,0,9);
   can_wb.get_rx_data(data_out,8);
   data_out[can_wb.get_rx_dlc()] =0x00;
   Serial.print(" DATA =");
-  Serial.print(data_out);
+  for (unsigned int g =0 ; g < can_wb.get_rx_dlc(); g++){
+    Serial.print(data_out[g],HEX);
+  }
   Serial.println();
 }
