@@ -11,9 +11,12 @@ VHDL_SRC= $(shell find hdl/ -name "*vhd")
 # just for "finding the test bench sources 
 VHDL_TEST_SRC= $(shell find hdl -name "*_tb.vhd")
 VHDL_TESTS = $(patsubst hdl/can/sim/%.vhd,%,$(VHDL_TEST_SRC))
+VHDL_TESTS_RUN = $(patsubst hdl/can/sim/%.vhd,%.run,$(VHDL_TEST_SRC))
 VHDL_TESTS_VCD = $(patsubst hdl/can/sim/%.vhd,%.vcd,$(VHDL_TEST_SRC))
 
 all:$(VHDL_TESTS) copy_data
+
+run:$(VHDL_TESTS_RUN) copy_data
 
 vcd:$(VHDL_TESTS_VCD) copy_data
 
@@ -31,6 +34,9 @@ include deps.mk
 %:%.o
 	ghdl -e --ieee=synopsys --std=08  $@ 
 
+#
+%.run:% copy_data
+	ghdl -r $< 
 #
 #
 %.vcd:% copy_data
