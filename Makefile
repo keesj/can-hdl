@@ -36,11 +36,11 @@ include deps.mk
 
 #
 %.run:% copy_data
-	ghdl -r $< 
+	ghdl -r --ieee=synopsys --std=08 $< 
 #
 #
 %.vcd:% copy_data
-	ghdl -r $<  --vcd=$<.vcd
+	ghdl -r --ieee=synopsys --std=08 $<  --vcd=$<.vcd
 
 copy_data:
 	cp -r hdl/can/sim/test_data .
