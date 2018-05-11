@@ -139,6 +139,11 @@ begin
         can_valid <= '0';
         wait until status(0) ='0';
         
+        hwrite(out_l,std_logic_vector(to_unsigned(can_tx_out_len,8)));
+        write(out_l,String'(" "));
+        hwrite(out_l,can_tx_out);
+        writeline(tb_out,out_l);   
+        
         -- now check len and value
 
         assert (can_tx_out = can_tx_out_expected) 
@@ -148,10 +153,7 @@ begin
           report "Unexpexted length (expected="   & to_hstring(can_out_len_expected) & ", actual=" & to_hstring(to_unsigned(can_tx_out_len,8)) & ") "
           severity failure;          
         --write recieved length and data
-        hwrite(out_l,std_logic_vector(to_unsigned(can_tx_out_len,8)));
-        write(out_l,String'(" "));
-        hwrite(out_l,can_tx_out);
-        writeline(tb_out,out_l);        
+     
     end loop;
     test_running <= '0';
 
