@@ -68,11 +68,10 @@ architecture behavior of can_crc_tb is
         report "DATA " &  std_logic'image(din);
         data <= data(6 downto 0) & '0';
       end loop;
-      assert crc = crc_in report "CRC mismatch" severity error;
-      report "DONE";
-      test_running <='0';
-      wait;
+      assert crc = crc_in report "CRC mismatch" severity failure;
     end loop;
-
+    report "DONE";
+    test_running <='0';
+    wait;
   end process tb;
 end;
