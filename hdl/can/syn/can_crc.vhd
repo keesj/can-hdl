@@ -23,9 +23,9 @@ begin
     crc <= crc_val;
 
     can_crc_raw : entity work.can_crc_raw port map(
-        crc_val => crc_val,
+        crc_val_cur => crc_val,
         din => din,
-        crc_next=> crc_next
+        crc_val_next=> crc_next
     );
 
     count: process(clk)
