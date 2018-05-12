@@ -184,29 +184,16 @@ begin
                         when can_state_data =>
                             report "Data";
                             crc_data <= crc_data_next;
-                            can_crc_buf <= crc_data_next;
+                            
                             if can_bit_counter = (8 * unsigned(can_dlc_buf)) -1 then
                                 -- the next bit is going to be the CRC do not update crc
                                 can_bit_counter <= (others => '0');
                                 can_tx_state <= can_state_crc;
+                                can_crc_buf <= crc_data_next;
+                                shift_buff(127 downto 113) <= crc_data_next;
                             end if;
                         when can_state_crc =>
                             report "CRC";
-                            if can_bit_counter = 0 then
-                                -- hack it up. I do not know how to do this currently
-                                -- The main problem is that in normal situation we fill the
-                                -- fifo buffer  but in this case the crc is only kown after sending the
-                                -- last byte. hence in this case we directly get the crc value
-                                -- and put it on the tx_buf. Because of that we also push one bit
-                                -- less on the fifo buffer.
-                                --for short we can not do
-                                --shift_buff(127 downto 112) <= crc_data & '0';
-
-                                can_phy_tx_buf <= crc_data(14);
-                                shift_buff(127 downto 113) <= crc_data(13 downto 0) & '0';
-                                bit_shift_one_bits(0) <= crc_data(14);
-                                bit_shift_zero_bits(0) <= crc_data(14);
-                            end if;
                             if can_bit_counter = 15 then
                                 can_bit_counter <= (others => '0');
                                 can_tx_state <= can_state_ack_delimiter;
