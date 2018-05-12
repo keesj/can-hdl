@@ -46,29 +46,30 @@ architecture behavior of can_crc_tb is
     variable data_in : std_logic_vector(7 downto 0);
     variable crc_in : std_logic_vector(14 downto 0);
   begin
-    wait for 10 ns;
-
     while not endfile(tb_data) loop
       readline(tb_data,l);
       hread(l, data_in);
       hread(l,crc_in);
+
       data <= data_in;
-      wait until falling_edge(clk);
       rst <= '1';   
       wait until rising_edge(clk);
-      wait until falling_edge(clk);
       rst <= '0';
 
+      report "new ROUND";
       for i in 0 to 7 loop
-        din <= data(6);
+        din <= data(7);
+        data <=  data(6 downto 0) & '0';
+        report "DATA " & std_logic'image(data(7));
         ce <='1';
         wait until rising_edge(clk);
-        wait until falling_edge(clk);
         ce <='0';
-        report "DATA " &  std_logic'image(din);
-        data <= data(6 downto 0) & '0';
       end loop;
-      assert crc = crc_in report "CRC mismatch" severity failure;
+      report "CRC " & to_hstring(crc);
+      --why??
+      wait until rising_edge(clk);
+      report "CRC " & to_hstring(crc);
+      assert crc = crc_in report "CRC mismatch input " & to_hstring(data_in) & " crc=" & to_hstring(crc) & " expected crc=" & to_hstring(crc_in) severity failure;
     end loop;
     report "DONE";
     test_running <='0';
