@@ -2,4 +2,5 @@
 00d 0 8 436f707972696768 6F 7FFF8234421B7B83E2E4D2CED1D1F07F # https://github.com/EliasOenal/sigrok-dumps/blob/master/can/arbitrary_traffic/bsd_license_can_standard_500k.logicdata
 7FF 0 8 FFFFFFFFFFFFFFFF 79 7EFBE88FBEFBEFBEFBEFBEFBEF8C893F # a lot of 1 values
 000 0 8 0000000000000000 7A 7C104182082082082082082082145B3F # a lot of 0 values
+7FF 0 0 FFFFFFFFFFFFFFFF 2E 7FFFFFFFFFFFFFFFFFFFDF7D044E5F3F # empty data (special case for the state machine)
 00d 0 8 436f707972696768 6F 7FFF8234421B7B83E2E4D2CED1D1F07F # https://github.com/EliasOenal/sigrok-dumps/blob/master/can/arbitrary_traffic/bsd_license_can_standard_500k.logicdata

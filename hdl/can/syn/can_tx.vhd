@@ -176,7 +176,10 @@ begin
                                 can_bit_counter <=(others => '0');
                                 if can_dlc_buf = "0000" then
                                     can_tx_state <= can_state_crc;
-                                    -- the next bit is going to be the CRC do not update crc
+                                    can_bit_counter <= (others => '0');
+                                    can_tx_state <= can_state_crc;
+                                    can_crc_buf <= crc_data_next;
+                                    shift_buff(127 downto 113) <= crc_data_next;
                                 else 
                                     can_tx_state <= can_state_data;
                                 end if;
