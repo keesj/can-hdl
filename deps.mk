@@ -2,7 +2,8 @@ can_tx.o: hdl/can/syn/can_tx.vhd can_crc.o
 can_phy.o: hdl/can/syn/can_phy.vhd
 can.o: hdl/can/syn/can.vhd can_tx_mux.o can_clk.o can_tx.o can_rx.o
 can_rx.o: hdl/can/syn/can_rx.vhd can_crc.o
-can_crc.o: hdl/can/syn/can_crc.vhd
+can_crc.o: hdl/can/syn/can_crc.vhd can_crc_raw.o
+can_crc_raw.o: hdl/can/syn/can_crc_raw.vhd
 can_tx_mux.o: hdl/can/syn/can_tx_mux.vhd
 can_clk.o: hdl/can/syn/can_clk.vhd
 can_wb.o: hdl/can/syn/can_wb.vhd can.o
