@@ -41,7 +41,7 @@ architecture behavior of can_crc_tb is
   
 
   tb : process is
-    file tb_data : text open READ_MODE is "test_data/can_crc_tb_data.hex";
+    file tb_data : text open READ_MODE is "hdl/can/sim/test_data/can_crc_tb_data.hex";
     variable l : line;
     variable data_in : std_logic_vector(7 downto 0);
     variable crc_in : std_logic_vector(14 downto 0);

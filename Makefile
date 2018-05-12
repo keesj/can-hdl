@@ -14,11 +14,11 @@ VHDL_TESTS = $(patsubst hdl/can/sim/%.vhd,%,$(VHDL_TEST_SRC))
 VHDL_TESTS_RUN = $(patsubst hdl/can/sim/%.vhd,%.run,$(VHDL_TEST_SRC))
 VHDL_TESTS_VCD = $(patsubst hdl/can/sim/%.vhd,%.vcd,$(VHDL_TEST_SRC))
 
-all:$(VHDL_TESTS) copy_data
+all:$(VHDL_TESTS)
 
-run:$(VHDL_TESTS_RUN) copy_data
+run:$(VHDL_TESTS_RUN)
 
-vcd:$(VHDL_TESTS_VCD) copy_data
+vcd:$(VHDL_TESTS_VCD)
 
 # Generated using gen_deps.sh....
 include deps.mk
@@ -35,15 +35,12 @@ include deps.mk
 	ghdl -e --ieee=synopsys --std=08  $@ 
 
 #
-%.run:% copy_data
+%.run:%
 	ghdl -r --ieee=synopsys --std=08 $< 
 #
 #
-%.vcd:% copy_data
+%.vcd:%
 	ghdl -r --ieee=synopsys --std=08 $<  --vcd=$<.vcd
-
-copy_data:
-	cp -r hdl/can/sim/test_data .
 
 clean:
 	rm -rf *.txt work-obj08.cf *.hex vunit_out test_data build *.o $(VHDL_TESTS) *.vcd
