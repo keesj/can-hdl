@@ -85,20 +85,17 @@ architecture rtl of can_rx is
     signal bit_stuffing_value : std_logic := '0';
     signal bit_stuffing_en : std_logic := '1';
 
-    signal crc_din : std_logic := '0';
-    signal crc_ce : std_logic := '0';
-    signal crc_rst : std_logic := '0';
     signal crc_data : std_logic_vector(14 downto 0);
+    signal crc_data_next : std_logic_vector(14 downto 0);
+    signal crc_din : std_logic := '0';
 
     signal crc_error : std_logic := '0';
 begin
 
-    crc: entity work.can_crc port map(
-        clk => clk,
+    crc: entity work.can_crc_raw port map(
+        crc_val_cur => crc_data,
         din => crc_din,
-        ce => crc_ce,
-        rst => crc_rst,
-        crc => crc_data
+        crc_val_next => crc_data_next
       );
 
     -- status / next state logic
@@ -124,7 +121,6 @@ begin
         if rising_edge(clk) then
             -- For crc we need to assert the signal only for one clock cycle hence we reset
             -- to 0 every cycle
-            crc_ce <= '0';
             can_rx_clk_sync <= '0';
             can_prev_rx <= can_phy_rx;
 
@@ -168,38 +164,36 @@ begin
                 --reset stuffing (enable is done in SOF)
                 bit_shift_one_bits <= (others => '0');
                 bit_shift_zero_bits  <= (others => '1');
-                crc_rst <= '1';
+                crc_data <= (others => '0');
                 
             elsif can_signal_get = '1' then
                 can_phy_ack_req <='0'; -- if can_phy_ack_req was set put it back to 0 after on can frame time
                 --report "STATE " & can_states'image(can_rx_state) ;
                 if bit_stuffing_required = '1' and bit_stuffing_en ='1' then
                     report "RX STUFFING(SKIPPING)";
-                    bit_shift_one_bits <= (0=> bit_stuffing_value , others => '0');
-                    bit_shift_zero_bits  <= (0=>bit_stuffing_value, others => '1');
+                    bit_shift_one_bits <= (0 => bit_stuffing_value , others => '0');
+                    bit_shift_zero_bits  <= (0 =>bit_stuffing_value, others => '1');
                 else
                     --shift bits in
                     shift_buff <= buff_current;
                     bit_shift_one_bits <= bit_shift_one_bits(3 downto 0) & can_phy_rx;
                     bit_shift_zero_bits <= bit_shift_zero_bits(3 downto 0) & can_phy_rx;
                     can_bit_counter <= can_bit_counter +1; 
-                    crc_rst <= '0';
 
                     case can_rx_state is
                         when can_state_idle =>
                             --report "IDLE";
                             bit_stuffing_en <='0';
-                            crc_ce <= '0';
                         when can_state_start_of_frame =>
                             report "SOF";
                             bit_stuffing_en <='1';
-                            crc_ce <= '1';  
+                            crc_data <= crc_data_next;
                             --perpare next state
                             can_bit_counter <= (others => '0');
                             can_rx_state <= can_state_arbitration;
                         when can_state_arbitration =>
                             report "AR bytes";
-                            crc_ce <= '1';
+                            crc_data <= crc_data_next;
                             if can_bit_counter = 11  then
                                 --prare next state
                                 --shift_buff(127 downto 115) <= '0' & can_id(31 downto 21) & can_id(0);
@@ -221,45 +215,40 @@ begin
                             end if;
                         when can_state_control =>
                             report "Control bytes";
-                            crc_ce <= '1';
+                            crc_data <= crc_data_next;
                             if can_bit_counter = 5 then
                                 --report "DLC " &  to_hstring(buff_current(3 downto 0));
                                 can_dlc_rx_buf <= buff_current(3 downto 0);
                                 can_bit_counter <=(others => '0');
                                 if buff_current(3 downto 0) = "0000" then
                                     can_rx_state <= can_state_crc;
-                                    -- the next bit is going to be the CRC do not update crc
-                                    crc_ce <= '0';
                                 else 
                                     can_rx_state <= can_state_data;
                                 end if;
                             end if;
                         when can_state_data =>
                             report "Data";
-                            crc_ce <= '1';
-                            
+                            crc_data <= crc_data_next;
+
                             if can_bit_counter = (8 * unsigned(can_dlc_rx_buf)) -1   then
-                                -- the next bit is going to be the CRC do not update crc
                                 for i in 1 to 8 loop
                                     if i = unsigned(can_dlc_rx_buf) then
                                         can_data_rx_buf((i * 8) -1 downto 0) <=   buff_current((i * 8) -1 downto 0);
                                     end if;
                                 end loop;
-                                
-                                crc_ce <= '1';
                                 can_bit_counter <= (others => '0');
                                 can_rx_state <= can_state_crc;
+
                             end if;
                         when can_state_crc =>
                             report "CRC";
-                            if can_bit_counter = 1 then
-                                can_crc_calculated <= crc_data;-- this is the recalculated recived buffer
+                            if  can_bit_counter = 0 then
+                                can_crc_calculated <= crc_data_next;
                             end if;
                             if can_bit_counter = 14 then
                                 can_crc_rx_buf <= buff_current(14 downto 0);
                                 can_bit_counter <= (others => '0');
                                 can_rx_state <= can_state_ack_slot;
-                                crc_rst <= '1';
                                 -- push ack slot and delimiter
                                 shift_buff(127 downto 126) <= "0" & "1";
                             end if;
@@ -270,9 +259,9 @@ begin
                                 report "CRC MATCH";
                                 can_phy_ack_req <= '1';
                             else 
-                                report "CRC ERROR";
+                                report "CRC ERROR calculated_crc=0x" & to_hstring(can_crc_calculated) & " received_crc=0x" & to_hstring(can_crc_rx_buf);
                                 crc_error <= '1';
-                                crc_rst <= '1';
+                                crc_data <= (others => '0');
                                 --can_rx_state <= can_state_idle;
                             end if;
                         when can_state_ack_delimiter =>
@@ -283,7 +272,7 @@ begin
                             -- disable stuffing for those bits
                             bit_stuffing_en <='0';
                             if can_bit_counter = 6 then
-                                crc_rst <= '1';--reset CRC for the next round
+                                crc_data <= (others => '0');--reset CRC for the next round
                                 can_id <= can_id_rx_buf;
                                 can_dlc <= can_dlc_rx_buf;
                                 can_data <= can_data_rx_buf;

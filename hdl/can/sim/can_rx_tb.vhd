@@ -174,7 +174,7 @@ begin
                 report "Unexpexted DLC "  & to_hstring(can_in_dlc_expected) & " " & to_hstring(can_dlc) severity failure;
 
                 assert (can_in_data_expected = can_data) 
-                report "Unexpexted DATA "  & to_hstring(can_in_data_expected) & " " & to_hstring(can_data) severity failure ;
+                report "Unexpexted data  (dlc=" & to_hstring(can_dlc) &")  (expected,actual)=(0x"  & to_hstring(can_in_data_expected) & ",  0x" & to_hstring(can_data) &") " severity failure ;
             end if;
         end loop;
     end loop;
