@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; Can HDL  documentation</title>
+  <title>Building &mdash; Can HDL  documentation</title>
   
 
   
@@ -28,7 +28,9 @@
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Linux support" href="linux_support.html" />
+    <link rel="prev" title="Can Wishbone" href="can_wb.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -60,7 +62,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -78,10 +80,14 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="design_overview.html">Design overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="can_wb.html">Can Wishbone</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">Building</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Building</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#low-level-code">Low level code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#high-level-code">High level code</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="linux_support.html">Linux support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rhme3.html">Rhme3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
@@ -132,12 +138,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Search</li>
+      <li>Building</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/building.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -149,24 +157,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="building">
+<h1>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h1>
+<p>There are different components developed for this project. The lower level “real” can controller code and the more high level code running on the FPGA.</p>
+<div class="section" id="low-level-code">
+<h2>Low level code<a class="headerlink" href="#low-level-code" title="Permalink to this headline">¶</a></h2>
+<p>The low level code is edited using a “normal” editor and validated using ghdl. After a clone of the git repository and installing ghdl one can type make run to build and test the code</p>
+<p>targets:</p>
+<blockquote>
+<div><ul class="simple">
+<li>make run compiles and run all the tests</li>
+<li>make vcd compiles and runs all the tests while creating a value change dump file (that can be viewed using gtkwave)</li>
+<li>make -f Makefile.ise builds an ise based project (using the xilinx tools). This is mostly usefull to find errors that ghdl does not find or validate that the code will compile using the ISE tools</li>
+<li>./gen_deps.sh parses the vhdl files to create a list of dependencies</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="high-level-code">
+<h2>High level code<a class="headerlink" href="#high-level-code" title="Permalink to this headline">¶</a></h2>
+<p>High level code is a bit harder to build as it requires an UI.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Install DesignLab</li>
+<li>Install the examples like described here <a class="reference external" href="https://github.com/GadgetFactory/DesignLab_Examples/blob/master/README.md">https://github.com/GadgetFactory/DesignLab_Examples/blob/master/README.md</a></li>
+<li>Symlink DesignLab_Examples/libraries/can_wb to this project DesignLab_Examples/libraries/can_wb</li>
+<li>Test flashing (ZPUINO/and softcore (examples-&gt;can_wb-&gt;cantact)</li>
+<li>Do file open DesignLab_Examples/libraries/can_wb/edit_library.ino</li>
+<li>Click on the sketchdir://circuit/PSL_Papilio_Pro_LX9.xise icon to start ise</li>
+<li>Add the files found in hdl/can/syn/ as described here <a class="reference external" href="http://forum.gadgetfactory.net/topic/2835-new-vhdl-library/">http://forum.gadgetfactory.net/topic/2835-new-vhdl-library/</a></li>
+<li>Click generate bit file</li>
+<li>before commiting code make sure to run DesignLab_Examples/libraries/can_wb/clean.sh to remove intermediate crap</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
 
-  
-  <div id="search-results">
-  
-  </div>
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="linux_support.html" class="btn btn-neutral float-right" title="Linux support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="can_wb.html" class="btn btn-neutral" title="Can Wishbone" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -206,7 +245,6 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/searchtools.js"></script>
 
   
 
@@ -221,14 +259,7 @@
           SphinxRtdTheme.Navigation.enableSticky();
           
       });
-  </script>
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
-   
-
+  </script> 
 
 </body>
 </html>
