@@ -16,7 +16,6 @@ XILINX=/opt/Xilinx/14.7/ISE_DS/ISE/
 # You can define these on multiple lines using +=, e.g.VSOURCE += foo.v
 VHDSOURCE +=  hdl/can/syn/can_clk.vhd
 VHDSOURCE +=  hdl/can/syn/can_crc_raw.vhd
-VHDSOURCE +=  hdl/can/syn/can_crc.vhd
 VHDSOURCE +=  hdl/can/syn/can_phy.vhd
 VHDSOURCE +=  hdl/can/syn/can_tx.vhd
 VHDSOURCE +=  hdl/can/syn/can_rx.vhd

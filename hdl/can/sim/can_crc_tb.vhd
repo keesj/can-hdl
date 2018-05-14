@@ -10,35 +10,20 @@ end can_crc_tb;
 architecture behavior of can_crc_tb is 
 
   signal data : std_logic_vector(7 downto 0) := "01010101";
-  signal clk : std_logic;
   signal din: std_logic;
-  signal ce: std_logic;
-  signal rst : std_logic;
-  signal crc: std_logic_vector(14 downto 0);
-  signal test_running :  std_logic := '1';
-  
   constant clk_period : time := 10 ns;
   
+  signal crc_data : std_logic_vector(14 downto 0);
+  signal crc_data_next : std_logic_vector(14 downto 0);
+  signal crc_din : std_logic := '0';
  begin
-     uut: entity work.can_crc port map(
-      clk => clk,
+     uut: entity work.can_crc_raw port map(
+      crc_val_cur => crc_data,
       din => din,
-      ce => ce,
-      rst => rst,
-      crc => crc
+      crc_val_next => crc_data_next
      );
 
-   clk_process :process
-   begin
-        clk <= '0';
-        wait for clk_period/2;  --for 0.5 ns signal is '0'.
-        clk <= '1';
-        wait for clk_period/2;  --for next 0.5 ns signal is '1'.
-        if test_running ='0' then
-          wait;
-        end if;
-   end process;
-  
+
 
   tb : process is
     file tb_data : text open READ_MODE is "hdl/can/sim/test_data/can_crc_tb_data.hex";
@@ -51,28 +36,29 @@ architecture behavior of can_crc_tb is
       hread(l, data_in);
       hread(l,crc_in);
 
+
       data <= data_in;
-      rst <= '1';   
-      wait until rising_edge(clk);
-      rst <= '0';
+      crc_data <= (others => '0');
+
+
+      wait for 10 ns;
+
 
       report "new ROUND";
       for i in 0 to 7 loop
         din <= data(7);
         data <=  data(6 downto 0) & '0';
         report "DATA " & std_logic'image(data(7));
-        ce <='1';
-        wait until rising_edge(clk);
-        ce <='0';
+        wait for 10 ns;
+        crc_data <= crc_data_next;
       end loop;
-      report "CRC " & to_hstring(crc);
+      report "CRC " & to_hstring(crc_data);
       --why??
-      wait until rising_edge(clk);
-      report "CRC " & to_hstring(crc);
-      assert crc = crc_in report "CRC mismatch input " & to_hstring(data_in) & " crc=" & to_hstring(crc) & " expected crc=" & to_hstring(crc_in) severity failure;
+      wait for 10 ns;
+      report "CRC " & to_hstring(crc_data);
+      assert crc_data = crc_in report "CRC mismatch input " & to_hstring(data_in) & " crc=" & to_hstring(crc_data) & " expected crc=" & to_hstring(crc_in) severity failure;
     end loop;
     report "DONE";
-    test_running <='0';
     wait;
   end process tb;
 end;

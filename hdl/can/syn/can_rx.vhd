@@ -259,7 +259,8 @@ begin
                                 report "CRC MATCH";
                                 can_phy_ack_req <= '1';
                             else 
-                                report "CRC ERROR calculated_crc=0x" & to_hstring(can_crc_calculated) & " received_crc=0x" & to_hstring(can_crc_rx_buf);
+                                --report "CRC ERROR calculated_crc=0x" & to_hstring(can_crc_calculated) & " received_crc=0x" & to_hstring(can_crc_rx_buf);
+                                report "CRC ERROR" ;
                                 crc_error <= '1';
                                 crc_data <= (others => '0');
                                 --can_rx_state <= can_state_idle;
