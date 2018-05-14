@@ -6,15 +6,15 @@ use ieee.numeric_std.all;
 -- based on 
 -- http://srecord.sourceforge.net/crc16-ccitt.html
 -- and https://www.can-cia.org/can-knowledge/can/crc/
-entity can_crc_raw is
+entity can_crc is
     port ( 
             crc_val_cur  : in std_logic_vector (14 downto 0) := (others => '0');
             din : in  std_logic;
             crc_val_next : out std_logic_vector (14 downto 0) := (others => '0')
     );
-end can_crc_raw;
+end can_crc;
 
-architecture rtl of can_crc_raw is    
+architecture rtl of can_crc is    
 begin
      -- x15 + x14 + x10 + x8 + x7 +x4 +x3 + 1 
      crc_val_next(0) <= crc_val_cur(14) xor din;

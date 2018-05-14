@@ -17,7 +17,7 @@ architecture behavior of can_crc_tb is
   signal crc_data_next : std_logic_vector(14 downto 0);
   signal crc_din : std_logic := '0';
  begin
-     uut: entity work.can_crc_raw port map(
+     uut: entity work.can_crc port map(
       crc_val_cur => crc_data,
       din => din,
       crc_val_next => crc_data_next

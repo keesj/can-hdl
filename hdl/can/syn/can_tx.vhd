@@ -77,7 +77,7 @@ architecture rtl of can_tx is
     signal can_lost_arbitration :  std_logic := '0';
 begin
 
-    crc: entity work.can_crc_raw port map(
+    crc: entity work.can_crc port map(
         crc_val_cur => crc_data,
         din => crc_din,
         crc_val_next => crc_data_next
