@@ -10,6 +10,7 @@ Git repository https://github.com/keesj/can-hdl
 
    design_overview
    can_wb
+   building
    linux_support
    rhme3
    tools
