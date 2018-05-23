@@ -7,7 +7,7 @@ end can_clk_tb;
 
 architecture behavior of can_clk_tb is 
 
-  signal quanta_clk_count : std_logic_vector(31 downto 0) := (5=>'1' , others =>'0');
+  signal clk_bit_count : std_logic_vector(31 downto 0) := (5=>'1' , others =>'0');
   -- Inputs
   signal clk : std_logic := '0';
   signal rst : std_logic := '0';
@@ -29,7 +29,7 @@ architecture behavior of can_clk_tb is
   uut: entity work.can_clk port map(
     clk => clk ,
     rst => rst,
-    quanta_clk_count => quanta_clk_count,
+    clk_bit_count => clk_bit_count,
     can_rx_clk_sync => can_rx_clk_sync ,
     can_config_clk_sync_en => can_config_clk_sync_en,
     can_sample_set_clk => can_sample_set_clk ,

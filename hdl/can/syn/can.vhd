@@ -50,7 +50,7 @@ architecture behavior of can is
   signal can_clk_sample_set_clk: std_logic := '0';   --Sync Signal to set a value on the can bus
   signal can_clk_sample_check_clk: std_logic := '0'; --Sync Signal to check a value on the can bus
   signal can_clk_sample_get_clk: std_logic := '0';   --Sync Signal to read the value of a signal
-  signal quanta_clk_count : std_logic_vector (31 downto 0) := (0 =>'1' , others => '0');
+  signal clk_bit_count : std_logic_vector (31 downto 0) := (0 =>'1' , others => '0');
   signal can_phy_ack_req: std_logic := '0'; --Signal from the rx module to the tx module to send an ack bit
 
   signal can_tx_status : std_logic_vector (31 downto 0):= (others => '0'); --transmit status
@@ -70,7 +70,7 @@ begin
   can_status(3) <= can_rx_status(2); -- rx data ready
   can_status(4) <= can_tx_status(1); -- tx lost artibration error
   can_status(31 downto 5) <= (others => '0');
-  quanta_clk_count <= can_sample_rate;
+  clk_bit_count <= can_sample_rate;
 
   can_tx_mux : entity work.can_tx_mux port map(
         clk   => clk,
@@ -88,7 +88,7 @@ begin
   can_clk: entity work.can_clk port map(
     clk => clk ,
     rst => rst,
-    quanta_clk_count => quanta_clk_count,
+    clk_bit_count => clk_bit_count,
     can_rx_clk_sync => can_rx_clk_sync ,
     can_config_clk_sync_en => can_config_clk_sync_en,
     can_sample_set_clk => can_clk_sample_set_clk ,

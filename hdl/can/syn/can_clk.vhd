@@ -8,7 +8,7 @@ entity can_clk is
     );
     port ( clk                    : in  std_logic;
            rst                    : in  std_logic;
-           quanta_clk_count       : in  std_logic_vector(31 downto 0) := (0=>'1', others => '0');
+           clk_bit_count          : in  std_logic_vector(31 downto 0) := (0=>'1', others => '0');
            can_config_clk_sync_en : in  std_logic;
            can_rx_clk_sync        : in  std_logic;  -- signal to sync with the bit clock
            can_sample_set_clk     : out std_logic;  -- Signal an outgoing sample must be set (firest quanta)
@@ -53,7 +53,7 @@ begin
                 
                 counter <= counter + divider;
                 if counter >= 0 then
-                    counter <= counter - to_integer(unsigned(quanta_clk_count));
+                    counter <= counter - to_integer(unsigned(clk_bit_count));
 
                     quanta_counter <= quanta_counter +1;
                     if quanta_counter = 9 then
