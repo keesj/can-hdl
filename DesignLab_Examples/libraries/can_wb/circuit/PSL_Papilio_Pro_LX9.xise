@@ -40,12 +40,12 @@
     </file>
     <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/ZPUino_2/sdram_hamster.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="154"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="10"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="14"/>
       <library xil_pn:name="DesignLab"/>
     </file>
     <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/ZPUino_2/pad.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="154"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="32"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="33"/>
       <library xil_pn:name="DesignLab"/>
     </file>
     <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/ZPUino_2/include_symbols.edif" xil_pn:type="FILE_EDIF">
@@ -55,7 +55,7 @@
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
     <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/ZPUino_2/ZPUino_Papilio_Pro_V2_blackbox.ngc" xil_pn:type="FILE_NGC">
-      <association xil_pn:name="Implementation" xil_pn:seqID="30"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="31"/>
     </file>
     <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/ZPUino_2/ZPUino_Papilio_DUO_V2_blackbox.ngc" xil_pn:type="FILE_NGC">
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
@@ -72,7 +72,7 @@
     </file>
     <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/ZPUino_2/sdram_wrap.vhd" xil_pn:type="FILE_VHDL">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="154"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="31"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="32"/>
       <library xil_pn:name="DesignLab"/>
     </file>
     <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/ZPUino_2/ZPUino_Papilio_Pro_V2.vhd" xil_pn:type="FILE_VHDL">
@@ -835,39 +835,44 @@
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="283"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
     </file>
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/can_wb/canlib/can_tx.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="237"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="12"/>
+    <file xil_pn:name="../../../../hdl/can/syn/can.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="185"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="30"/>
       <library xil_pn:name="DesignLab"/>
     </file>
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/can_wb/canlib/can_tx_mux.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="238"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="11"/>
-      <library xil_pn:name="DesignLab"/>
-    </file>
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/can_wb/canlib/can_rx.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="239"/>
+    <file xil_pn:name="../../../../hdl/can/syn/can_clk.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="186"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="13"/>
       <library xil_pn:name="DesignLab"/>
     </file>
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/can_wb/canlib/can.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="240"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="33"/>
+    <file xil_pn:name="../../../../hdl/can/syn/can_phy.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="187"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
       <library xil_pn:name="DesignLab"/>
     </file>
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/can_wb/canlib/can_clk.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="241"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="14"/>
-      <library xil_pn:name="DesignLab"/>
-    </file>
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/can_wb/canlib/can_crc.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="242"/>
+    <file xil_pn:name="../../../../hdl/can/syn/can_crc.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="188"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="1"/>
       <library xil_pn:name="DesignLab"/>
     </file>
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/can_wb/canlib/can_phy.vhd" xil_pn:type="FILE_VHDL">
-      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="243"/>
+    <file xil_pn:name="../../../../hdl/can/syn/can_tx_mux.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="189"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="10"/>
+      <library xil_pn:name="DesignLab"/>
+    </file>
+    <file xil_pn:name="../../../../hdl/can/syn/can_tx.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="190"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="11"/>
+      <library xil_pn:name="DesignLab"/>
+    </file>
+    <file xil_pn:name="../../../../hdl/can/syn/can_wb.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="191"/>
       <association xil_pn:name="Implementation" xil_pn:seqID="0"/>
+      <library xil_pn:name="DesignLab"/>
+    </file>
+    <file xil_pn:name="../../../../hdl/can/syn/can_rx.vhd" xil_pn:type="FILE_VHDL">
+      <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="192"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="12"/>
       <library xil_pn:name="DesignLab"/>
     </file>
   </files>
@@ -898,7 +903,7 @@
     <property xil_pn:name="Change Device Speed To" xil_pn:value="-2" xil_pn:valueState="default"/>
     <property xil_pn:name="Change Device Speed To Post Trace" xil_pn:value="-2" xil_pn:valueState="default"/>
     <property xil_pn:name="Combinatorial Logic Optimization" xil_pn:value="false" xil_pn:valueState="default"/>
-    <property xil_pn:name="Compile EDK Simulation Library" xil_pn:value="true" xil_pn:valueState="non-default"/>
+    <property xil_pn:name="Compile EDK Simulation Library" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Compile SIMPRIM (Timing) Simulation Library" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Compile UNISIM (Functional) Simulation Library" xil_pn:value="true" xil_pn:valueState="default"/>
     <property xil_pn:name="Compile XilinxCoreLib (CORE Generator) Simulation Library" xil_pn:value="true" xil_pn:valueState="default"/>
@@ -1232,14 +1237,14 @@
     <!-- Do not hand-edit this section, as it will be overwritten when the    -->
     <!-- project is analyzed based on files automatically identified as       -->
     <!-- include files.                                                       -->
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/Gameduino/revision.v" xil_pn:type="FILE_VERILOG"/>
+    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/BitCoin_Miner/main_pll.v" xil_pn:type="FILE_VERILOG"/>
+    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/BitCoin_Miner/sha-256-functions.v" xil_pn:type="FILE_VERILOG"/>
     <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/BitCoin_Miner/sha256_transform.v" xil_pn:type="FILE_VERILOG"/>
     <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/BitCoin_Miner/uart_receiver.v" xil_pn:type="FILE_VERILOG"/>
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/BitCoin_Miner/serial.v" xil_pn:type="FILE_VERILOG"/>
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/BitCoin_Miner/sha-256-functions.v" xil_pn:type="FILE_VERILOG"/>
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/BitCoin_Miner/raw7seg.v" xil_pn:type="FILE_VERILOG"/>
-    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/BitCoin_Miner/main_pll.v" xil_pn:type="FILE_VERILOG"/>
     <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/BitCoin_Miner/uart_transmitter.v" xil_pn:type="FILE_VERILOG"/>
+    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/BitCoin_Miner/serial.v" xil_pn:type="FILE_VERILOG"/>
+    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/BitCoin_Miner/raw7seg.v" xil_pn:type="FILE_VERILOG"/>
+    <file xil_pn:name="../../../../../../DesignLab_Examples/libraries/Gameduino/revision.v" xil_pn:type="FILE_VERILOG"/>
   </autoManagedFiles>
 
 </project>

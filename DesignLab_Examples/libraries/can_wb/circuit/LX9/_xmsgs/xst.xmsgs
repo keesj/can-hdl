@@ -29,13 +29,13 @@
 <msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/keesj/projects/DesignLab_Examples/libraries/can_wb/can_wb.vhd" Line 98: Assignment to <arg fmt="%s" index="1">wb_rst_i</arg> ignored, since the identifier is never used
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="871" delta="old" >"/home/keesj/projects/DesignLab_Examples/libraries/can_wb/canlib/can.vhd" Line 49: Using initial value <arg fmt="%s" index="1">&apos;1&apos;</arg> for <arg fmt="%s" index="2">can_rx_clk_sync_en</arg> since it is never assigned
+<msg type="warning" file="HDLCompiler" num="871" delta="old" >"/home/keesj/projects/github/can-hdl/hdl/can/syn/can.vhd" Line 49: Using initial value <arg fmt="%s" index="1">&apos;1&apos;</arg> for <arg fmt="%s" index="2">can_rx_clk_sync_en</arg> since it is never assigned
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/keesj/projects/DesignLab_Examples/libraries/can_wb/canlib/can_tx.vhd" Line 108: Assignment to <arg fmt="%s" index="1">can_id_buf</arg> ignored, since the identifier is never used
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/keesj/projects/github/can-hdl/hdl/can/syn/can_tx.vhd" Line 106: Assignment to <arg fmt="%s" index="1">can_id_buf</arg> ignored, since the identifier is never used
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/keesj/projects/DesignLab_Examples/libraries/can_wb/canlib/can_rx.vhd" Line 122: Assignment to <arg fmt="%s" index="1">can_id_filter_buf</arg> ignored, since the identifier is never used
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/keesj/projects/github/can-hdl/hdl/can/syn/can_rx.vhd" Line 119: Assignment to <arg fmt="%s" index="1">can_id_filter_buf</arg> ignored, since the identifier is never used
 </msg>
 
 <msg type="warning" file="HDLCompiler" num="92" delta="old" >"/home/keesj/projects/DesignLab_Examples/libraries/can_wb/can_wb.vhd" Line 141: <arg fmt="%s" index="1">wb_cyc_i</arg> should be on the sensitivity list of the process
@@ -380,7 +380,7 @@
 <msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">can_config&lt;31:2&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
-<msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">quanta_clk_count&lt;31:31&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+<msg type="warning" file="Xst" num="647" delta="new" >Input &lt;<arg fmt="%s" index="1">clk_bit_count&lt;31:31&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 </msg>
 
 <msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">can_id&lt;20:1&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -1247,7 +1247,7 @@
 <msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">lastExClock</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">sampler</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">can_sample_get_clk_buf</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">can_clk</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;can_sample_check_clk_buf&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="new" >The FF/Latch &lt;<arg fmt="%s" index="1">can_sample_check_clk_buf</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">can_clk</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;can_sample_get_clk_buf&gt; </arg>
 </msg>
 
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">can_valid</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">can_rx</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;can_data_ready&gt; </arg>
@@ -2070,9 +2070,6 @@
 
 <msg type="warning" file="Xst" num="0" delta="new" >Edge <arg fmt="%s" index="1">ext_pins_inout&lt;16&gt;</arg> has no source ports and will not be translated to ABC.</msg>
 
-<msg type="warning" file="Xst" num="1293" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">XLXI_41/can0/can_clk/counter_31</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Papilio_Pro</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
 <msg type="warning" file="Xst" num="1293" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">XLXI_52/Inst_sram/addra_13</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Papilio_Pro</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
@@ -2280,7 +2277,7 @@
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">XLXI_52/Inst_eia232/wrFlags</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Papilio_Pro</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;XLXI_52/Inst_core/Inst_decoder/wrFlags&gt; </arg>
 </msg>
 
-<msg type="warning" file="Xst" num="2254" delta="old" >Area constraint could not be met for block &lt;<arg fmt="%s" index="1">Papilio_Pro</arg>&gt;, final ratio is <arg fmt="%i" index="2">112</arg>.
+<msg type="warning" file="Xst" num="2254" delta="new" >Area constraint could not be met for block &lt;<arg fmt="%s" index="1">Papilio_Pro</arg>&gt;, final ratio is <arg fmt="%i" index="2">111</arg>.
 </msg>
 
 <msg type="info" file="Xst" num="2260" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">zpuino/core/exr_state_FSM_FFd3</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">XLXI_51/Inst_ZPUino_Papilio_Pro_V2_blackbox</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg> : <arg fmt="%s" index="4">&lt;zpuino/core/exr_state_FSM_FFd3_1&gt; &lt;zpuino/core/exr_state_FSM_FFd3_2&gt; </arg>
