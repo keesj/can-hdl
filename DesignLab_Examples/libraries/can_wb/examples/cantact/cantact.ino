@@ -86,7 +86,7 @@ void clean_buf(){
 void setup() {
   Serial.begin(115200);
   can_wb.setup(5);
-  can_wb.set_config(CAN_CONFIG_CLK_SYNC);
+  can_wb.set_config(0);
   clean_buf();
   can_fifo_init(&send_buffer);
   can_fifo_init(&receive_buffer);
@@ -138,10 +138,10 @@ int cmd_S(){
   }
 
   int speed_index = ser_buf[1]- '0';
-  //lookup speed
+  //lookup speed  
   unsigned long speed = speed_table[speed_index];
   //we only need one for now..
-  can_wb.set_sample_rate(191);
+  can_wb.set_sample_rate(1920);
   //TODO SET sample rate here
 #ifdef DEBUG
   Serial.print("DS:OK: Speed=");

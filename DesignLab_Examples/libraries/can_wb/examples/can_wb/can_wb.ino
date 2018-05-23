@@ -34,7 +34,7 @@ void setup() {
   Serial.begin(115200);
   can_wb.setup(5);   
   
-  can_wb.set_sample_rate(191);
+  can_wb.set_sample_rate(1920);
   can_wb.set_config(0x01);
 }
 
