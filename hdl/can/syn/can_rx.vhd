@@ -269,7 +269,6 @@ begin
                             can_bit_counter <= (others => '0');
                             can_rx_state <= can_state_eof;
                         when can_state_eof =>
-
                             -- disable stuffing for those bits
                             bit_stuffing_en <='0';
                             if can_bit_counter = 6 then

@@ -7,7 +7,7 @@ end can_clk_tb;
 
 architecture behavior of can_clk_tb is 
 
-  signal quanta_clk_count : std_logic_vector(31 downto 0) := (1=>'0' , others =>'0');
+  signal quanta_clk_count : std_logic_vector(31 downto 0) := (5=>'1' , others =>'0');
   -- Inputs
   signal clk : std_logic := '0';
   signal rst : std_logic := '0';
@@ -57,7 +57,7 @@ architecture behavior of can_clk_tb is
     wait until falling_edge(clk);
     wait until rising_edge(clk);
     rst <= '0';
-    wait for 10 ms;
+    wait for 1 ms;
     test_running <= '0';
     wait; -- will wait forever
   end process tb;

@@ -124,11 +124,11 @@ begin
             can1_can_config(1 downto 0) <=  "10";
 
             --set sample rate
-            can0_can_sample_rate <=  std_logic_vector(to_unsigned(40,32));
+            can0_can_sample_rate <=  std_logic_vector(to_unsigned(400,32));
             if z = 0 then
-                can1_can_sample_rate <=  std_logic_vector(to_unsigned(41,32));
+                can1_can_sample_rate <=  std_logic_vector(to_unsigned(410,32));
             else 
-                can1_can_sample_rate <=  std_logic_vector(to_unsigned(39,32));
+                can1_can_sample_rate <=  std_logic_vector(to_unsigned(390,32));
             end if;
             wait until rising_edge(clk);
             wait until falling_edge(clk);
