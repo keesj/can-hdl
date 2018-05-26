@@ -141,7 +141,7 @@ int cmd_S(){
   //lookup speed  
   unsigned long speed = speed_table[speed_index];
   //we only need one for now..
-  can_wb.set_sample_rate(1920);
+  can_wb.set_sample_rate(1908);
   //TODO SET sample rate here
 #ifdef DEBUG
   Serial.print("DS:OK: Speed=");
