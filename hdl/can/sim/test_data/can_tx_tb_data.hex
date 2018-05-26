@@ -1,3 +1,4 @@
+332 0 8 756E6C6F636B0000 6E 7FFFCCC843AB73637B1B582082F1507F # rhme3 can opener "unlock" message
 00d 0 8 436f707972696768 6F 7FFF8234421B7B83E2E4D2CED1D1F07F # https://github.com/EliasOenal/sigrok-dumps/blob/master/can/arbitrary_traffic/bsd_license_can_standard_500k.logicdata
 00d 0 8 436f707972696768 6F 7FFF8234421B7B83E2E4D2CED1D1F07F # https://github.com/EliasOenal/sigrok-dumps/blob/master/can/arbitrary_traffic/bsd_license_can_standard_500k.logicdata
 7FF 0 8 FFFFFFFFFFFFFFFF 79 7EFBE88FBEFBEFBEFBEFBEFBEF8C893F # a lot of 1 values
