@@ -34,7 +34,7 @@ void setup() {
   Serial.begin(115200);
   can_wb.setup(5);   
   
-  can_wb.set_sample_rate(1920);
+  can_wb.set_sample_rate(1908);
   can_wb.set_config(0x01);
 }
 
@@ -51,9 +51,9 @@ void loop() {
   Serial.print(can_wb.get_config());
 
 
-  unsigned char data[8] = {'h','e','l','l','o','c','a','n'};
+  unsigned char data[8] = {'u','n','l','o','c','k','\0','\0'};
   
-  can_wb.set_tx_id(id_counter << 21);
+  can_wb.set_tx_id(0x332 << 21);
   can_wb.set_tx_dlc(8); 
   can_wb.set_tx_data(data,8);
   
@@ -69,7 +69,8 @@ void loop() {
       break;
     }
   }
-    
+  delay(1);
+  return;  
   count=0;
   while( ((value = can_wb.get_status()) & 0x1) == 1 ){
     delay(100);

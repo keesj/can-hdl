@@ -232,6 +232,8 @@ int cmd_t(){//tiiildd...
     Serial.write(String(dlc,HEX));
     Serial.write(" Buff size ");
     Serial.write(String(ser_buf_idx,HEX));
+    Serial.write(" Buff ");
+    Serial.write(ser_buf,ser_buf_idx-1);
     Serial.write('\r');
 #endif
     return -1;
