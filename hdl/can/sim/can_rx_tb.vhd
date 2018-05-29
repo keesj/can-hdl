@@ -162,7 +162,7 @@ begin
             
             if i = 1 then
                 --expect crc error
-                assert (status(1 downto 0) = "10") report "Expected CRC error status status=" & to_hstring(status) severity failure;
+                assert (status(2) = '1') report "Expected CRC error status status=" & to_hstring(status) severity failure;
             else 
                 assert status(2) = '1' report "Data ready should be 1 but is " & to_hstring(status(2 downto 0)) severity failure;
                 assert (status(1 downto 0) = "00") report "NON null status " & to_hstring(status) severity failure;
@@ -170,11 +170,10 @@ begin
                 report "Unexpexted ID (expected="  & to_hstring(can_in_id_expected) & ") actual(" & to_hstring(can_id(31 downto 21)) & ")" severity failure;
 
                 
-                assert (can_in_dlc_expected = can_dlc) 
-                report "Unexpexted DLC "  & to_hstring(can_in_dlc_expected) & " " & to_hstring(can_dlc) severity failure;
-
-                assert (can_in_data_expected = can_data) 
-                report "Unexpexted data  (dlc=" & to_hstring(can_dlc) &")  (expected,actual)=(0x"  & to_hstring(can_in_data_expected) & ",  0x" & to_hstring(can_data) &") " severity failure ;
+                assert (can_in_dlc_expected = can_dlc) report "Unexpexted DLC "  & to_hstring(can_in_dlc_expected) & " " & to_hstring(can_dlc) severity failure;
+                if can_dlc /= "000" then
+                    assert (can_in_data_expected = can_data) report "Unexpexted data (dlc=" & to_hstring(can_dlc) &")  (expected,actual)=(0x"  & to_hstring(can_in_data_expected) & ",  0x" & to_hstring(can_data) &") " severity failure ;
+                end if;
             end if;
         end loop;
     end loop;

@@ -44,8 +44,7 @@ begin
         can_phy_rx     => can_phy_rx
     );
 
-   --can_signal_set <=clk;
-   can_phy_rx <= can_phy_tx;
+   can_phy_rx <= can_phy_tx when can_phy_tx_en = '1' else '1';
 
    clk_process :process
    begin

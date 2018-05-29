@@ -94,7 +94,6 @@ begin
         phy_rx    => can1_phy_rx
     );
 
-    --wire up (we should add the can_phy in here)
     can1_phy_rx <= can0_phy_tx when can0_phy_tx_en = '1' else '1';
 
     clk_process : process

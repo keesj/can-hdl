@@ -25,7 +25,7 @@ architecture rtl of can_tx is
     signal can_phy_tx_buf    : std_logic := '0';
     signal can_phy_tx_en_buf : std_logic := '0';
     signal can_crc_buf       : std_logic_vector (14 downto 0) := (others => '0');
-    signal shift_buff        : std_logic_vector (127 downto 0) := (others => '0');
+    signal shift_buff        : std_logic_vector (127 downto 0) := (others => '1');
 
     -- Counter used to count the bits sent
     signal can_bit_counter   : unsigned (7 downto 0) := (others => '0');
@@ -139,7 +139,7 @@ begin
                     bit_shift_zero_bits  <= ( 0 => bit_stuffing_value , others => '1');
                 else
                     --shift bits for the next round 
-                    shift_buff(127 downto 0) <= shift_buff(126 downto 0) & "0";
+                    shift_buff(127 downto 0) <= shift_buff(126 downto 0) & "1";
                     bit_shift_one_bits  <= bit_shift_one_bits (3 downto 0) & next_tx_value;
                     bit_shift_zero_bits <= bit_shift_zero_bits(3 downto 0) & next_tx_value;
 
