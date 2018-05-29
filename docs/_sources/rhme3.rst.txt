@@ -34,3 +34,7 @@ Translated to binary:
 The challenge is to unlock the car using an unlock message. We shutdown scland and write a python script to do so.
 
 .. literalinclude:: rhme3/can_open.py
+
+
+.. image:: rhme3/img/can_open_done.png
+

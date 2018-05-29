@@ -180,7 +180,7 @@ lock</div></blockquote>
 <span class="kn">import</span> <span class="nn">time</span>
 
 
-<span class="n">dev</span> <span class="o">=</span> <span class="n">CantactDev</span><span class="p">(</span><span class="s2">&quot;/dev/ttyUSB2&quot;</span><span class="p">)</span>
+<span class="n">dev</span> <span class="o">=</span> <span class="n">CantactDev</span><span class="p">(</span><span class="s2">&quot;/dev/ttyUSB1&quot;</span><span class="p">)</span>
 <span class="n">dev</span><span class="o">.</span><span class="n">set_bitrate</span><span class="p">(</span><span class="mi">50000</span><span class="p">)</span>
 <span class="n">dev</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
@@ -195,14 +195,15 @@ lock</div></blockquote>
 <span class="nb">id</span> <span class="o">=</span> <span class="mh">0x332</span>
 
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-	<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-	<span class="n">frame</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
-	<span class="k">if</span> <span class="n">frame</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-		<span class="nb">print</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-		<span class="n">send_frame</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
-  
+	<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span>
+	<span class="n">send_frame</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+	<span class="k">while</span> <span class="n">dev</span><span class="o">.</span><span class="n">available</span><span class="p">():</span>
+		<span class="n">f</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+		<span class="k">if</span> <span class="n">f</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
+<img alt="_images/can_open_done.png" src="_images/can_open_done.png" />
 </div>
 </div>
 
