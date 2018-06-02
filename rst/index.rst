@@ -2,6 +2,8 @@ Can HDL documentation
 =====================
 
 
+.. image:: img/can_open_hw.jpg
+
 Git repository https://github.com/keesj/can-hdl
 
 .. toctree::
