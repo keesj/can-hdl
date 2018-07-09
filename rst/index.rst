@@ -17,4 +17,5 @@ Git repository https://github.com/keesj/can-hdl
    rhme3
    tools
    hardware
+   tutorial
    resources
