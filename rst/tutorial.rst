@@ -102,6 +102,47 @@ HDL
 FPGA architecture
 '''''''''''''''''
 
+From the hardware side of things
+LUT, Buffers, and inteconnects
+
+
+* Look Up Tables
+
+
+.. image:: tutorial/fpga_lut.png
+
+* Buffers. keep value
+
+.. image:: tutorial/fpga_buffer.png
+
+* Interconnects
+
+.. image:: tutorial/fpga_interconnect.png
+
+
+`a real  <https://twitter.com/ico_tc>`_
+
+.. image:: tutorial/ice40_floorplan.jpg
+
+All programmed by memory
+
+* Combined these logic blocks you can create real functionality from a simple controller to a full(but slowish) system on chip
+
+.. image:: tutorial/fpga_combined.png
+
+
+
+FPGA toolchain
+''''''''''''''
+
+.. image:: tutorial/fpga_toolchain.png
+
+
+VHDL
+----
+
+I used VHDL as language of choice because I have a papilio board and the examples are using VHDL.
+
 
 Mostly based on the fosdem presentation from Tristan Ginggold 
 https://fosdem.org/2018/schedule/event/cad_fpga_intro/attachments/slides/2136/export/events/attachments/cad_fpga_intro/slides/2136/fpga_design.pdf
