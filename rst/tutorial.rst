@@ -44,6 +44,7 @@ Can arbitration
 ''''''''''''''''
 
 * Prevent collision during arbitration (when I send a recessive bit but "see" a dominant one, I shut up)
+
 .. image:: tutorial/can_arbitration.png
 
 
@@ -74,7 +75,7 @@ Summary
 * Can is different from average UART/SPI/JTAG
 * Supports multiple devices on the same bus
 * Has arbitration and crc's to provide reliable delivery and priorities
-* Has quite hard requirements in terms of timing (e.g. the ack bit and lack of clock)
+* Has quite hard requirements in terms of timing (e.g. the ack bit and lack of clock). This is because the logic depends on the recieved data
 
 Components
 ----------
@@ -99,6 +100,8 @@ to trigger an interact on every state change on the can bus.
 HDL
 ---
 
+Using an FPGA is a good match. 
+
 FPGA architecture
 '''''''''''''''''
 
@@ -120,11 +123,11 @@ LUT, Buffers, and inteconnects
 .. image:: tutorial/fpga_interconnect.png
 
 
-`a real  <https://twitter.com/ico_tc>`_
+Example final floorplan  (Configuration loaded from memory/flash)
 
-.. image:: tutorial/ice40_floorplan.jpg
+.. image:: tutorial/ice040_floorplan.png
 
-All programmed by memory
+
 
 * Combined these logic blocks you can create real functionality from a simple controller to a full(but slowish) system on chip
 
@@ -135,6 +138,8 @@ All programmed by memory
 FPGA toolchain
 ''''''''''''''
 
+A full toolchain does eventhing from the high level code until creating a bitstream that can be loaded in the fpga.
+
 .. image:: tutorial/fpga_toolchain.png
 
 
@@ -143,6 +148,8 @@ VHDL
 
 I used VHDL as language of choice because I have a papilio board and the examples are using VHDL.
 
+
+https://knielsen.github.io/ice40_viewer/ice40_viewer.html
 
 Mostly based on the fosdem presentation from Tristan Ginggold 
 https://fosdem.org/2018/schedule/event/cad_fpga_intro/attachments/slides/2136/export/events/attachments/cad_fpga_intro/slides/2136/fpga_design.pdf
