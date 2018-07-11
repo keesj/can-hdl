@@ -102,7 +102,7 @@ Accessing the can bus calls for the following Components
 * A controller (that has strict timing and basic logic to offload the CPU)
 * Logic (e.g. a program telling to send or receive frames and configuring the controller)
 
-.. image:: tutorial/can_controller_and_phy.png
+.. image:: tutorial/can_controller_and_phy.svg
 
 For hackers we want more
 
@@ -134,15 +134,15 @@ LUT, Buffers, and inteconnects
 * Look Up Tables
 
 
-.. image:: tutorial/fpga_lut.png
+.. image:: tutorial/fpga_lut.svg
 
 * Buffers. keep value
 
-.. image:: tutorial/fpga_buffer.png
+.. image:: tutorial/fpga_buffer.svg
 
 * Interconnects
 
-.. image:: tutorial/fpga_interconnect.png
+.. image:: tutorial/fpga_interconnect.svg
 
 
 Example final floorplan  (Configuration loaded from memory/flash)
@@ -152,44 +152,54 @@ Example final floorplan  (Configuration loaded from memory/flash)
 .. image:: tutorial/ice040_floorplan.png
 
 
-* Combined these logic blocks you can create real functionality from a simple controller to a full(but slowish) system on chip
-
-.. image:: tutorial/fpga_combined.png
 
 FPGA toolchain
 ''''''''''''''
 
 A full toolchain does eventhing from the high level code until creating a bitstream that can be loaded in the fpga.
 
-.. image:: tutorial/fpga_toolchain.png
+.. image:: tutorial/fpga_toolchain.svg
 
 VHDL
-----
+''''
 
-The design for a flexible controller calls for at least two phys (possibly 3) and the ability
-to trigger an interact on every state change on the can bus.
-
-I used VHDL as language of choice because I have a papilio board and the examples are using VHDL.
-
-.. image:: tutorial/can_fpga.png
-
-
-Simple logic
-'''''''''''''
-
-The phy contains simple boolean logic (nothing is sequential)
+The phy contains simple boolean logic (nothing is sequential). Everything happens at the same time
 
 .. literalinclude:: ../hdl/can/syn/can_phy.vhd
     :linenos:
     :emphasize-lines: 20
 
+* Everything is happening at the same time
+* Try state logic
 
-Stats
------
-
-Generated using gitstats on `my working repository <https://github.com/keesj/fpga-hdl/tree/can>`_
-
+* Buffers can be used to separate/synchronize parts of the design
+* There is not a real for loop (everything needs to be layed out)
+* There are no real limilations on "word size" if you feel like 13 bits you can
 
 
+
+
+The solution
+------------
+
+I used VHDL as language of choice because I have a papilio board and the examples are using VHDL.
+
+.. image:: tutorial/can_fpga.svg
+
+I ended up creating the following architecture
+
+.. image:: img/design_sw_stack_overview.png
+
+
+
+* Show challenge
+* Demo Linux support
+* Demo solution
+* Show stats (Generated using gitstats on `my working repository <https://github.com/keesj/fpga-hdl/tree/can>`_ )
+* If feels good having a better understanding of the lower levels
+
+And for something real:
+
+http://ww1.microchip.com/downloads/en/DeviceDoc/20005282B.pdf
 
 
