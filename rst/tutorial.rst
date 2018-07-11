@@ -1,15 +1,31 @@
 Tutorial
 ========
 
-Can
---- 
+
+The challenge
+-------------
+
+The challenge:
+
+"Our operatives have recovered a DeLorean in the ruins of an old mid-west US town. It appears to be locked, but we have successfully accessed its internal communications channels. According to the little data we have, the DeLorean internally uses an archaic technology called CAN bus. We need you to analyze the communications and find a way to unlock the vehicle; once unlocked, recover the secret flag stored inside. We have reason to believe that vehicle entry should be a fairly easy challenge, but to aid you in this, we have restored and reconnected the vehicle dashboard."
+
+.. image:: tutorial/challenge_mindmap.png
+
+
+.. image:: tutorial/challenge_attack.png
+
+
+
+
+About Can
+---------
 
 Can Signaling
 '''''''''''''
 
 * Differential
 
-.. image:: tutorial/can_h_can_l.png
+.. image:: tutorial/can_h_can_l.svg
 
 * High transmision(the default state) is recessive (hang loose)
 
@@ -69,18 +85,18 @@ Can protocol
 .. image:: tutorial/can_protocol_send.png
 
 
-Summary
-'''''''
+Can Summary
+'''''''''''
 
 * Can is different from average UART/SPI/JTAG
 * Supports multiple devices on the same bus
 * Has arbitration and crc's to provide reliable delivery and priorities
 * Has quite hard requirements in terms of timing (e.g. the ack bit and lack of clock). This is because the logic depends on the recieved data
 
-Components
-----------
+For the challenge
+------------------
 
-Accessing the can bus therefore calls for the following Components
+Accessing the can bus calls for the following Components
 
 * A can phy (that converts a logic signal into something valid with the can specs)
 * A controller (that has strict timing and basic logic to offload the CPU)
@@ -90,17 +106,23 @@ Accessing the can bus therefore calls for the following Components
 
 For hackers we want more
 
+* Firewall: Functionality to filters out "unwanted" stuffing
+* Confuse: send inaproritate ack requests, cause miscommunication
+* Impersonation tools e.g. record/replay recieved packets
+* Inject: Inject data put data on the bus
+* Live take over: When device B sends ID 0xf77 take over the payload
+* Triggers: Allow good triggers to perform fault injections
+
 .. image:: tutorial/can_for_hackers.png
 
-The design for a flexible controller calls for at least two phys (possibly 3) and the ability
-to trigger an interact on every state change on the can bus.
 
-.. image:: tutorial/can_fpga.png
+* Ordering hardware http://canable.io/ failed and it felt like a nice challenge to implement my own can controller and phy
+* I was in no hurry so started coding
 
 HDL
 ---
 
-Using an FPGA is a good match. 
+Using an FPGA was a good match. 
 
 FPGA architecture
 '''''''''''''''''
@@ -125,15 +147,14 @@ LUT, Buffers, and inteconnects
 
 Example final floorplan  (Configuration loaded from memory/flash)
 
-.. image:: tutorial/ice040_floorplan.png
+`online viewer <https://knielsen.github.io/ice40_viewer/ice40_viewer.html>`_
 
+.. image:: tutorial/ice040_floorplan.png
 
 
 * Combined these logic blocks you can create real functionality from a simple controller to a full(but slowish) system on chip
 
 .. image:: tutorial/fpga_combined.png
-
-
 
 FPGA toolchain
 ''''''''''''''
@@ -142,14 +163,33 @@ A full toolchain does eventhing from the high level code until creating a bitstr
 
 .. image:: tutorial/fpga_toolchain.png
 
-
 VHDL
 ----
 
+The design for a flexible controller calls for at least two phys (possibly 3) and the ability
+to trigger an interact on every state change on the can bus.
+
 I used VHDL as language of choice because I have a papilio board and the examples are using VHDL.
 
+.. image:: tutorial/can_fpga.png
 
-https://knielsen.github.io/ice40_viewer/ice40_viewer.html
 
-Mostly based on the fosdem presentation from Tristan Ginggold 
-https://fosdem.org/2018/schedule/event/cad_fpga_intro/attachments/slides/2136/export/events/attachments/cad_fpga_intro/slides/2136/fpga_design.pdf
+Simple logic
+'''''''''''''
+
+The phy contains simple boolean logic (nothing is sequential)
+
+.. literalinclude:: ../hdl/can/syn/can_phy.vhd
+    :linenos:
+    :emphasize-lines: 20
+
+
+Stats
+-----
+
+Generated using gitstats on `my working repository <https://github.com/keesj/fpga-hdl/tree/can>`_
+
+
+
+
+
