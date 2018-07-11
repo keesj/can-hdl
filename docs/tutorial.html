@@ -1,0 +1,459 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial &mdash; Can HDL  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Resources" href="resources.html" />
+    <link rel="prev" title="Hardware" href="hardware.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Can HDL
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="design_overview.html">Design overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="can_wb.html">Can Wishbone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linux_support.html">Linux support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rhme3.html">Rhme3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-challenge">The challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#about-can">About Can</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#can-signaling">Can Signaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-topology">Can topology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-frame">Can frame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-arbitration">Can arbitration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-bit-stuffing">Can bit stuffing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-crc">Can crc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-protocol">Can protocol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#can-summary">Can Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#for-the-challenge">For the challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hdl">HDL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fpga-architecture">FPGA architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fpga-toolchain">FPGA toolchain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vhdl">VHDL</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-solution">The solution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Can HDL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tutorial.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-challenge">
+<h2>The challenge<a class="headerlink" href="#the-challenge" title="Permalink to this headline">¶</a></h2>
+<p>The challenge:</p>
+<p>“Our operatives have recovered a DeLorean in the ruins of an old mid-west US town. It appears to be locked, but we have successfully accessed its internal communications channels. According to the little data we have, the DeLorean internally uses an archaic technology called CAN bus. We need you to analyze the communications and find a way to unlock the vehicle; once unlocked, recover the secret flag stored inside. We have reason to believe that vehicle entry should be a fairly easy challenge, but to aid you in this, we have restored and reconnected the vehicle dashboard.”</p>
+<img alt="_images/challenge_mindmap.png" src="_images/challenge_mindmap.png" />
+<img alt="_images/challenge_attack.png" src="_images/challenge_attack.png" />
+</div>
+<div class="section" id="about-can">
+<h2>About Can<a class="headerlink" href="#about-can" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="can-signaling">
+<h3>Can Signaling<a class="headerlink" href="#can-signaling" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Differential</li>
+</ul>
+<img alt="_images/can_h_can_l.svg" src="_images/can_h_can_l.svg" /><ul class="simple">
+<li>High transmision(the default state) is recessive (hang loose)</li>
+</ul>
+<img alt="_images/high_recessive.png" src="_images/high_recessive.png" />
+<ul class="simple">
+<li>Low transmission is dominant (driven)</li>
+</ul>
+<img alt="_images/low_dominant.png" src="_images/low_dominant.png" />
+<ul class="simple">
+<li>Ended with 120 Ohm resistors</li>
+<li>No dedicated TX/RX like on an UART</li>
+<li>No separate clock line like on SPI/JTAG/I2C</li>
+<li>0 is STRONGER than 1</li>
+</ul>
+</div>
+<div class="section" id="can-topology">
+<h3>Can topology<a class="headerlink" href="#can-topology" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Star topology (and others)</li>
+</ul>
+<img alt="_images/can_topology.png" src="_images/can_topology.png" />
+</div>
+<div class="section" id="can-frame">
+<h3>Can frame<a class="headerlink" href="#can-frame" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/can_base_frame.png" src="_images/can_base_frame.png" />
+</div>
+<div class="section" id="can-arbitration">
+<h3>Can arbitration<a class="headerlink" href="#can-arbitration" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Prevent collision during arbitration (when I send a recessive bit but “see” a dominant one, I shut up)</li>
+</ul>
+<img alt="_images/can_arbitration.png" src="_images/can_arbitration.png" />
+</div>
+<div class="section" id="can-bit-stuffing">
+<h3>Can bit stuffing<a class="headerlink" href="#can-bit-stuffing" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Prevent 6 concecutive bits from having the same value</li>
+</ul>
+<img alt="_images/can_bit_stuffing.png" src="_images/can_bit_stuffing.png" />
+</div>
+<div class="section" id="can-crc">
+<h3>Can crc<a class="headerlink" href="#can-crc" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Can frame are guarded by a CRC</li>
+</ul>
+<img alt="_images/can_crc.png" src="_images/can_crc.png" />
+</div>
+<div class="section" id="can-protocol">
+<h3>Can protocol<a class="headerlink" href="#can-protocol" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/can_protocol_send.png" src="_images/can_protocol_send.png" />
+</div>
+<div class="section" id="can-summary">
+<h3>Can Summary<a class="headerlink" href="#can-summary" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Can is different from average UART/SPI/JTAG</li>
+<li>Supports multiple devices on the same bus</li>
+<li>Has arbitration and crc’s to provide reliable delivery and priorities</li>
+<li>Has quite hard requirements in terms of timing (e.g. the ack bit and lack of clock). This is because the logic depends on the recieved data</li>
+</ul>
+</div>
+</div>
+<div class="section" id="for-the-challenge">
+<h2>For the challenge<a class="headerlink" href="#for-the-challenge" title="Permalink to this headline">¶</a></h2>
+<p>Accessing the can bus calls for the following Components</p>
+<ul class="simple">
+<li>A can phy (that converts a logic signal into something valid with the can specs)</li>
+<li>A controller (that has strict timing and basic logic to offload the CPU)</li>
+<li>Logic (e.g. a program telling to send or receive frames and configuring the controller)</li>
+</ul>
+<img alt="_images/can_controller_and_phy.svg" src="_images/can_controller_and_phy.svg" /><p>For hackers we want more</p>
+<ul class="simple">
+<li>Firewall: Functionality to filters out “unwanted” stuffing</li>
+<li>Confuse: send inaproritate ack requests, cause miscommunication</li>
+<li>Impersonation tools e.g. record/replay recieved packets</li>
+<li>Inject: Inject data put data on the bus</li>
+<li>Live take over: When device B sends ID 0xf77 take over the payload</li>
+<li>Triggers: Allow good triggers to perform fault injections</li>
+</ul>
+<img alt="_images/can_for_hackers.png" src="_images/can_for_hackers.png" />
+<ul class="simple">
+<li>Ordering hardware <a class="reference external" href="http://canable.io/">http://canable.io/</a> failed and it felt like a nice challenge to implement my own can controller and phy</li>
+<li>I was in no hurry so started coding</li>
+</ul>
+</div>
+<div class="section" id="hdl">
+<h2>HDL<a class="headerlink" href="#hdl" title="Permalink to this headline">¶</a></h2>
+<p>Using an FPGA was a good match.</p>
+<div class="section" id="fpga-architecture">
+<h3>FPGA architecture<a class="headerlink" href="#fpga-architecture" title="Permalink to this headline">¶</a></h3>
+<p>From the hardware side of things
+LUT, Buffers, and inteconnects</p>
+<ul class="simple">
+<li>Look Up Tables</li>
+</ul>
+<img alt="_images/fpga_lut.svg" src="_images/fpga_lut.svg" /><ul class="simple">
+<li>Buffers. keep value</li>
+</ul>
+<img alt="_images/fpga_buffer.svg" src="_images/fpga_buffer.svg" /><ul class="simple">
+<li>Interconnects</li>
+</ul>
+<img alt="_images/fpga_interconnect.svg" src="_images/fpga_interconnect.svg" /><p>Example final floorplan  (Configuration loaded from memory/flash)</p>
+<p><a class="reference external" href="https://knielsen.github.io/ice40_viewer/ice40_viewer.html">online viewer</a></p>
+<img alt="_images/ice040_floorplan.png" src="_images/ice040_floorplan.png" />
+</div>
+<div class="section" id="fpga-toolchain">
+<h3>FPGA toolchain<a class="headerlink" href="#fpga-toolchain" title="Permalink to this headline">¶</a></h3>
+<p>A full toolchain does eventhing from the high level code until creating a bitstream that can be loaded in the fpga.</p>
+<img alt="_images/fpga_toolchain.svg" src="_images/fpga_toolchain.svg" /></div>
+<div class="section" id="vhdl">
+<h3>VHDL<a class="headerlink" href="#vhdl" title="Permalink to this headline">¶</a></h3>
+<p>The phy contains simple boolean logic (nothing is sequential). Everything happens at the same time</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">library</span> <span class="n">ieee</span><span class="p">;</span>
+<span class="n">use</span> <span class="n">ieee</span><span class="o">.</span><span class="n">std_logic_1164</span><span class="o">.</span><span class="n">all</span><span class="p">;</span>
+
+<span class="n">entity</span> <span class="n">can_phy</span> <span class="ow">is</span>
+    <span class="n">port</span> <span class="p">(</span> 
+        <span class="n">tx</span>            <span class="p">:</span> <span class="ow">in</span>    <span class="n">std_logic</span><span class="p">;</span>
+        <span class="n">tx_en</span>         <span class="p">:</span> <span class="ow">in</span>    <span class="n">std_logic</span><span class="p">;</span>
+        <span class="n">rx</span>            <span class="p">:</span> <span class="n">out</span>   <span class="n">std_logic</span><span class="p">;</span>
+        <span class="n">can_collision</span> <span class="p">:</span> <span class="n">out</span>   <span class="n">std_logic</span><span class="p">;</span> <span class="o">--</span><span class="n">detect</span> <span class="n">detect</span> <span class="n">collisions</span>
+        <span class="n">can_l</span>         <span class="p">:</span> <span class="n">inout</span> <span class="n">std_logic</span><span class="p">;</span>
+        <span class="n">can_h</span>         <span class="p">:</span> <span class="n">inout</span> <span class="n">std_logic</span>
+    <span class="p">);</span>
+<span class="n">end</span> <span class="n">can_phy</span><span class="p">;</span>
+
+<span class="n">architecture</span> <span class="n">rtl</span> <span class="n">of</span> <span class="n">can_phy</span> <span class="ow">is</span>
+    <span class="n">signal</span> <span class="n">rx_out</span> <span class="p">:</span> <span class="n">std_logic</span><span class="p">;</span> <span class="o">--</span><span class="n">create</span> <span class="n">rx_out</span> <span class="k">as</span> <span class="n">buffer</span>
+<span class="n">begin</span>
+    <span class="n">rx</span> <span class="o">&lt;=</span> <span class="n">rx_out</span><span class="p">;</span>
+    <span class="o">--</span><span class="n">driving</span> <span class="n">the</span> <span class="n">can</span> <span class="n">bus</span> <span class="n">when</span> <span class="n">en</span> <span class="ow">is</span> <span class="n">enabled</span>
+<span class="hll">    <span class="n">can_l</span> <span class="o">&lt;=</span> <span class="n">tx</span> <span class="n">when</span> <span class="p">(</span><span class="n">tx_en</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;Z&#39;</span><span class="p">;</span>
+</span>    <span class="n">can_h</span> <span class="o">&lt;=</span> <span class="ow">not</span> <span class="n">tx</span> <span class="n">when</span> <span class="p">(</span><span class="n">tx_en</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;Z&#39;</span><span class="p">;</span>
+    
+    <span class="o">--</span> <span class="n">alway</span> <span class="n">assign</span> <span class="n">rx</span> <span class="n">to</span> <span class="n">can_h</span>
+    <span class="n">rx_out</span> <span class="o">&lt;=</span> <span class="s1">&#39;1&#39;</span> <span class="n">when</span> <span class="n">can_h</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span> <span class="ow">and</span> <span class="n">can_l</span> <span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="k">else</span> <span class="s1">&#39;0&#39;</span><span class="p">;</span>
+    
+    <span class="o">--</span><span class="n">we</span> <span class="n">can</span> <span class="n">only</span> <span class="n">detect</span> <span class="n">when</span> <span class="n">we</span> <span class="n">send</span> <span class="n">a</span> <span class="mi">1</span> <span class="n">but</span> <span class="n">the</span> <span class="n">bus</span> <span class="n">remains</span> <span class="n">low</span>
+    <span class="n">can_collision</span> <span class="o">&lt;=</span> <span class="s1">&#39;1&#39;</span> <span class="n">when</span> <span class="n">tx</span> <span class="o">=</span><span class="s1">&#39;1&#39;</span> <span class="ow">and</span> <span class="n">tx_en</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">rx_out</span> <span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="k">else</span> <span class="s1">&#39;0&#39;</span><span class="p">;</span>
+<span class="n">end</span> <span class="n">rtl</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></div>
+<ul class="simple">
+<li>Everything is happening at the same time</li>
+<li>Try state logic</li>
+<li>Buffers can be used to separate/synchronize parts of the design</li>
+<li>There is not a real for loop (everything needs to be layed out)</li>
+<li>There are no real limilations on “word size” if you feel like 13 bits you can</li>
+</ul>
+</div>
+</div>
+<div class="section" id="the-solution">
+<h2>The solution<a class="headerlink" href="#the-solution" title="Permalink to this headline">¶</a></h2>
+<p>I used VHDL as language of choice because I have a papilio board and the examples are using VHDL.</p>
+<img alt="_images/can_fpga.svg" src="_images/can_fpga.svg" /><p>I ended up creating the following architecture</p>
+<img alt="_images/design_sw_stack_overview.png" src="_images/design_sw_stack_overview.png" />
+<ul class="simple">
+<li>Show challenge</li>
+<li>Demo Linux support</li>
+<li>Demo solution</li>
+<li>Show stats (Generated using gitstats on <a class="reference external" href="https://github.com/keesj/fpga-hdl/tree/can">my working repository</a> )</li>
+<li>If feels good having a better understanding of the lower levels</li>
+</ul>
+<p>And for something real:</p>
+<p><a class="reference external" href="http://ww1.microchip.com/downloads/en/DeviceDoc/20005282B.pdf">http://ww1.microchip.com/downloads/en/DeviceDoc/20005282B.pdf</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="resources.html" class="btn btn-neutral float-right" title="Resources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="hardware.html" class="btn btn-neutral" title="Hardware" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Kees Jongenburger.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

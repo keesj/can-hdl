@@ -22,8 +22,6 @@ freenode irc ##vhdl was pretty good to me
 About CAN bus
 -------------
 
-
-
 * `An Introduction to the CANard Toolkit <http://www.blackhat.com/docs/asia-15/materials/asia-15-Evenchick-Hopping-On-The-Can-Bus-wp.pdf>`_
 * `CAN and CAN FD bus decoding <https://www.picotech.com/library/oscilloscopes/can-bus-serial-protocol-decoding>`_
 * `TI introduction on CAN BUS MUST READ <http://www.ti.com/lit/an/sloa101b/sloa101b.pdf>`_
@@ -41,3 +39,4 @@ Canard API is relatively simple also:
 * `Microchip Introduction to Controller Area Network <http://www.microchip.com/stellent/groups/SiteComm_sg/documents/DeviceDoc/en558265.pdf>`_
 * `can for mortals <http://blog.qartis.com/can-bus/>`_
 * `can232 manual (pretty nice and simple <http://www.can232.com/docs/canusb_manual.pdf>`_
+* `Fosdem presentation from Tristan Ginggold on FPGA <https://fosdem.org/2018/schedule/event/cad_fpga_intro/attachments/slides/2136/export/events/attachments/cad_fpga_intro/slides/2136/fpga_design.pdf>`_
