@@ -9,10 +9,10 @@ The challenge:
 
 "Our operatives have recovered a DeLorean in the ruins of an old mid-west US town. It appears to be locked, but we have successfully accessed its internal communications channels. According to the little data we have, the DeLorean internally uses an archaic technology called CAN bus. We need you to analyze the communications and find a way to unlock the vehicle; once unlocked, recover the secret flag stored inside. We have reason to believe that vehicle entry should be a fairly easy challenge, but to aid you in this, we have restored and reconnected the vehicle dashboard."
 
-.. image:: tutorial/challenge_mindmap.png
+.. image:: tutorial/challenge_mindmap.svg
 
 
-.. image:: tutorial/challenge_attack.png
+.. image:: tutorial/challenge_attack.svg
 
 
 
@@ -29,11 +29,11 @@ Can Signaling
 
 * High transmision(the default state) is recessive (hang loose)
 
-.. image:: tutorial/high_recessive.png
+.. image:: tutorial/high_recessive.svg
 
 * Low transmission is dominant (driven)
 
-.. image:: tutorial/low_dominant.png
+.. image:: tutorial/low_dominant.svg
 
 
 * Ended with 120 Ohm resistors
